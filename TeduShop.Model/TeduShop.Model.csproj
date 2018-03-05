@@ -30,17 +30,11 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
-      <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
-    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
-      <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.SqlServer.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Security" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -49,11 +43,96 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Footers.cs">
+      <DependentUpon>TeduShop.tt</DependentUpon>
+    </Compile>
+    <Compile Include="MenuGroups.cs">
+      <DependentUpon>TeduShop.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Menus.cs">
+      <DependentUpon>TeduShop.tt</DependentUpon>
+    </Compile>
+    <Compile Include="OrderDetail.cs">
+      <DependentUpon>TeduShop.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Orders.cs">
+      <DependentUpon>TeduShop.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Pages.cs">
+      <DependentUpon>TeduShop.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Post.cs">
+      <DependentUpon>TeduShop.tt</DependentUpon>
+    </Compile>
+    <Compile Include="PostCategories.cs">
+      <DependentUpon>TeduShop.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ProductCategories.cs">
+      <DependentUpon>TeduShop.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Products.cs">
+      <DependentUpon>TeduShop.tt</DependentUpon>
+    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Slides.cs">
+      <DependentUpon>TeduShop.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SupportOnline.cs">
+      <DependentUpon>TeduShop.tt</DependentUpon>
+    </Compile>
+    <Compile Include="sysdiagrams.cs">
+      <DependentUpon>TeduShop.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SystemConfigs.cs">
+      <DependentUpon>TeduShop.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Tags.cs">
+      <DependentUpon>TeduShop.tt</DependentUpon>
+    </Compile>
+    <Compile Include="TeduShop.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>TeduShop.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="TeduShop.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>TeduShop.tt</DependentUpon>
+    </Compile>
+    <Compile Include="TeduShop.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>TeduShop.edmx</DependentUpon>
+    </Compile>
+    <Compile Include="VisitorStatistics.cs">
+      <DependentUpon>TeduShop.tt</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
     <None Include="packages.config" />
+    <EntityDeploy Include="TeduShop.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>TeduShop.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <None Include="TeduShop.edmx.diagram">
+      <DependentUpon>TeduShop.edmx</DependentUpon>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="TeduShop.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>TeduShop.edmx</DependentUpon>
+      <LastGenOutput>TeduShop.Context.cs</LastGenOutput>
+    </Content>
+    <Content Include="TeduShop.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>TeduShop.edmx</DependentUpon>
+      <LastGenOutput>TeduShop.cs</LastGenOutput>
+    </Content>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
