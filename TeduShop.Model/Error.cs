@@ -12,9 +12,11 @@ namespace TeduShop.Model
     using System;
     using System.Collections.Generic;
     
-    public partial class PostTags
+    public partial class Error
     {
-        public int PostID { get; set; }
-        public string TagID { get; set; }
+        public int ID { get; set; }
+        public string Message { get; set; }
+        public string StackTrace { get; set; }
+        public Nullable<System.DateTime> CreateDate { get; set; }
     }
 }

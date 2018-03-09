@@ -5,6 +5,15 @@
     <!-- SSDL content -->
     <edmx:StorageModels>
     <Schema Namespace="ShopExampleModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Error">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" Nullable="false" />
+          <Property Name="Message" Type="nvarchar(max)" />
+          <Property Name="StackTrace" Type="nvarchar(max)" />
+          <Property Name="CreateDate" Type="datetime" />
+        </EntityType>
         <EntityType Name="Footers">
           <Key>
             <PropertyRef Name="ID" />
@@ -339,6 +348,7 @@
           </ReferentialConstraint>
         </Association>
         <EntityContainer Name="ShopExampleModelStoreContainer">
+          <EntitySet Name="Error" EntityType="Self.Error" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Footers" EntityType="Self.Footers" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="MenuGroups" EntityType="Self.MenuGroups" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Menus" EntityType="Self.Menus" Schema="dbo" store:Type="Tables" />
@@ -444,6 +454,7 @@
             <End Role="Products" EntitySet="Products" />
             <End Role="Tags" EntitySet="Tags" />
           </AssociationSet>
+          <EntitySet Name="Error" EntityType="ShopExampleModel.Error" />
         </EntityContainer>
         <EntityType Name="PostTags">
           <Key>
@@ -744,6 +755,15 @@
           <End Type="ShopExampleModel.Products" Role="Products" Multiplicity="*" />
           <End Type="ShopExampleModel.Tags" Role="Tags" Multiplicity="*" />
         </Association>
+        <EntityType Name="Error">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" />
+          <Property Name="Message" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="StackTrace" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="CreateDate" Type="DateTime" Precision="3" />
+        </EntityType>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -998,6 +1018,16 @@
               <ScalarProperty Name="ID" ColumnName="ProductID" />
             </EndProperty>
           </AssociationSetMapping>
+          <EntitySetMapping Name="Error">
+            <EntityTypeMapping TypeName="ShopExampleModel.Error">
+              <MappingFragment StoreEntitySet="Error">
+                <ScalarProperty Name="CreateDate" ColumnName="CreateDate" />
+                <ScalarProperty Name="StackTrace" ColumnName="StackTrace" />
+                <ScalarProperty Name="Message" ColumnName="Message" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>

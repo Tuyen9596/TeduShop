@@ -42,5 +42,6 @@ namespace TeduShop.Model
         public virtual DbSet<SystemConfigs> SystemConfigs { get; set; }
         public virtual DbSet<Tags> Tags { get; set; }
         public virtual DbSet<VisitorStatistics> VisitorStatistics { get; set; }
+        public virtual DbSet<Error> Error { get; set; }
     }
 }

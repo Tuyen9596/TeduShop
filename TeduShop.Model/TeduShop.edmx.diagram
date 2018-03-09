@@ -29,6 +29,7 @@
         <AssociationConnector Association="ShopExampleModel.FK_Products_ProductCategories" />
         <AssociationConnector Association="ShopExampleModel.PostTags1" />
         <AssociationConnector Association="ShopExampleModel.ProductTags" />
+        <EntityTypeShape EntityType="ShopExampleModel.Error" Width="1.5" PointX="13.375" PointY="0.75" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>
