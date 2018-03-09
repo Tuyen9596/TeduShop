@@ -25,6 +25,7 @@ namespace TeduShop.Model
             throw new UnintentionalCodeFirstException();
         }
     
+        public virtual DbSet<PostTags> PostTags { get; set; }
         public virtual DbSet<Footers> Footers { get; set; }
         public virtual DbSet<MenuGroups> MenuGroups { get; set; }
         public virtual DbSet<Menus> Menus { get; set; }

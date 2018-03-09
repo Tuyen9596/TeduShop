@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="ShopExampleModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+    <Schema Namespace="ShopExampleModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="Footers">
           <Key>
             <PropertyRef Name="ID" />
@@ -394,16 +394,70 @@
             <End Role="ProductTags" EntitySet="ProductTags" />
           </AssociationSet>
         </EntityContainer>
-      </Schema>
-    </edmx:StorageModels>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="ShopExampleModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityContainer Name="ShopExampleEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="PostTags" EntityType="ShopExampleModel.PostTags" />
+          <EntitySet Name="Footers" EntityType="ShopExampleModel.Footers" />
+          <EntitySet Name="MenuGroups" EntityType="ShopExampleModel.MenuGroups" />
+          <EntitySet Name="Menus" EntityType="ShopExampleModel.Menus" />
+          <EntitySet Name="OrderDetail" EntityType="ShopExampleModel.OrderDetail" />
+          <EntitySet Name="Orders" EntityType="ShopExampleModel.Orders" />
+          <EntitySet Name="Pages" EntityType="ShopExampleModel.Pages" />
+          <EntitySet Name="Post" EntityType="ShopExampleModel.Post" />
+          <EntitySet Name="PostCategories" EntityType="ShopExampleModel.PostCategories" />
+          <EntitySet Name="ProductCategories" EntityType="ShopExampleModel.ProductCategories" />
+          <EntitySet Name="Products" EntityType="ShopExampleModel.Products" />
+          <EntitySet Name="Slides" EntityType="ShopExampleModel.Slides" />
+          <EntitySet Name="SupportOnline" EntityType="ShopExampleModel.SupportOnline" />
+          <EntitySet Name="sysdiagrams" EntityType="ShopExampleModel.sysdiagrams" />
+          <EntitySet Name="SystemConfigs" EntityType="ShopExampleModel.SystemConfigs" />
+          <EntitySet Name="Tags" EntityType="ShopExampleModel.Tags" />
+          <EntitySet Name="VisitorStatistics" EntityType="ShopExampleModel.VisitorStatistics" />
+          <AssociationSet Name="FK_Menus_MenuGroups" Association="ShopExampleModel.FK_Menus_MenuGroups">
+            <End Role="MenuGroups" EntitySet="MenuGroups" />
+            <End Role="Menus" EntitySet="Menus" />
+          </AssociationSet>
+          <AssociationSet Name="FK_OrderDetail_Orders" Association="ShopExampleModel.FK_OrderDetail_Orders">
+            <End Role="Orders" EntitySet="Orders" />
+            <End Role="OrderDetail" EntitySet="OrderDetail" />
+          </AssociationSet>
+          <AssociationSet Name="FK_OrderDetail_Products" Association="ShopExampleModel.FK_OrderDetail_Products">
+            <End Role="Products" EntitySet="Products" />
+            <End Role="OrderDetail" EntitySet="OrderDetail" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Post_PostCategories" Association="ShopExampleModel.FK_Post_PostCategories">
+            <End Role="PostCategories" EntitySet="PostCategories" />
+            <End Role="Post" EntitySet="Post" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Products_ProductCategories" Association="ShopExampleModel.FK_Products_ProductCategories">
+            <End Role="ProductCategories" EntitySet="ProductCategories" />
+            <End Role="Products" EntitySet="Products" />
+          </AssociationSet>
+          <AssociationSet Name="PostTags1" Association="ShopExampleModel.PostTags1">
+            <End Role="Post" EntitySet="Post" />
+            <End Role="Tags" EntitySet="Tags" />
+          </AssociationSet>
+          <AssociationSet Name="ProductTags" Association="ShopExampleModel.ProductTags">
+            <End Role="Products" EntitySet="Products" />
+            <End Role="Tags" EntitySet="Tags" />
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="PostTags">
+          <Key>
+            <PropertyRef Name="PostID" />
+            <PropertyRef Name="TagID" />
+          </Key>
+          <Property Name="PostID" Type="Int32" Nullable="false" />
+          <Property Name="TagID" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+        </EntityType>
         <EntityType Name="Footers">
           <Key>
             <PropertyRef Name="ID" />
           </Key>
-          <Property Name="ID" Type="String" MaxLength="250" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="ID" Type="String" Nullable="false" MaxLength="250" FixedLength="false" Unicode="false" />
           <Property Name="Content" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
         </EntityType>
         <EntityType Name="MenuGroups">
@@ -412,7 +466,7 @@
           </Key>
           <Property Name="ID" Type="Int32" Nullable="false" />
           <Property Name="Name" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
-          <NavigationProperty Name="Menus" Relationship="Self.FK_Menus_MenuGroups" FromRole="MenuGroups" ToRole="Menus" />
+          <NavigationProperty Name="Menus" Relationship="ShopExampleModel.FK_Menus_MenuGroups" FromRole="MenuGroups" ToRole="Menus" />
         </EntityType>
         <EntityType Name="Menus">
           <Key>
@@ -425,7 +479,7 @@
           <Property Name="DIsplayOrder" Type="Int32" />
           <Property Name="Target" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="Status" Type="Boolean" />
-          <NavigationProperty Name="MenuGroups" Relationship="Self.FK_Menus_MenuGroups" FromRole="Menus" ToRole="MenuGroups" />
+          <NavigationProperty Name="MenuGroups" Relationship="ShopExampleModel.FK_Menus_MenuGroups" FromRole="Menus" ToRole="MenuGroups" />
         </EntityType>
         <EntityType Name="OrderDetail">
           <Key>
@@ -435,8 +489,8 @@
           <Property Name="OrderID" Type="Int32" Nullable="false" />
           <Property Name="ProductID" Type="Int32" Nullable="false" />
           <Property Name="Quatity" Type="Int32" />
-          <NavigationProperty Name="Orders" Relationship="Self.FK_OrderDetail_Orders" FromRole="OrderDetail" ToRole="Orders" />
-          <NavigationProperty Name="Products" Relationship="Self.FK_OrderDetail_Products" FromRole="OrderDetail" ToRole="Products" />
+          <NavigationProperty Name="Orders" Relationship="ShopExampleModel.FK_OrderDetail_Orders" FromRole="OrderDetail" ToRole="Orders" />
+          <NavigationProperty Name="Products" Relationship="ShopExampleModel.FK_OrderDetail_Products" FromRole="OrderDetail" ToRole="Products" />
         </EntityType>
         <EntityType Name="Orders">
           <Key>
@@ -453,7 +507,7 @@
           <Property Name="PayMentMeThod" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
           <Property Name="PayMentStatus" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="Status" Type="Boolean" />
-          <NavigationProperty Name="OrderDetail" Relationship="Self.FK_OrderDetail_Orders" FromRole="Orders" ToRole="OrderDetail" />
+          <NavigationProperty Name="OrderDetail" Relationship="ShopExampleModel.FK_OrderDetail_Orders" FromRole="Orders" ToRole="OrderDetail" />
         </EntityType>
         <EntityType Name="Pages">
           <Key>
@@ -471,8 +525,8 @@
             <PropertyRef Name="ID" />
           </Key>
           <Property Name="ID" Type="Int32" Nullable="false" />
-          <Property Name="Name" Type="String" MaxLength="250" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="Alas" Type="String" MaxLength="250" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="250" FixedLength="false" Unicode="true" />
+          <Property Name="Alas" Type="String" Nullable="false" MaxLength="250" FixedLength="false" Unicode="false" />
           <Property Name="CategoryID" Type="Int32" />
           <Property Name="Image" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
           <Property Name="Description" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
@@ -486,16 +540,16 @@
           <Property Name="Status" Type="Boolean" Nullable="false" />
           <Property Name="HomeFlag" Type="Boolean" />
           <Property Name="ViewCount" Type="Int32" />
-          <NavigationProperty Name="PostCategories" Relationship="Self.FK_Post_PostCategories" FromRole="Post" ToRole="PostCategories" />
-          <NavigationProperty Name="Tags" Relationship="Self.PostTags" FromRole="Post" ToRole="Tags" />
+          <NavigationProperty Name="PostCategories" Relationship="ShopExampleModel.FK_Post_PostCategories" FromRole="Post" ToRole="PostCategories" />
+          <NavigationProperty Name="Tags" Relationship="ShopExampleModel.PostTags1" FromRole="Post" ToRole="Tags" />
         </EntityType>
         <EntityType Name="PostCategories">
           <Key>
             <PropertyRef Name="ID" />
           </Key>
           <Property Name="ID" Type="Int32" Nullable="false" />
-          <Property Name="PostName" Type="String" MaxLength="250" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="Alas" Type="String" MaxLength="250" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="PostName" Type="String" Nullable="false" MaxLength="250" FixedLength="false" Unicode="true" />
+          <Property Name="Alas" Type="String" Nullable="false" MaxLength="250" FixedLength="false" Unicode="false" />
           <Property Name="ParentID" Type="Int32" />
           <Property Name="Image" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
           <Property Name="Description" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
@@ -508,15 +562,15 @@
           <Property Name="UpdateBy" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="Status" Type="Boolean" Nullable="false" />
           <Property Name="HomeFlag" Type="Boolean" Nullable="false" />
-          <NavigationProperty Name="Post" Relationship="Self.FK_Post_PostCategories" FromRole="PostCategories" ToRole="Post" />
+          <NavigationProperty Name="Post" Relationship="ShopExampleModel.FK_Post_PostCategories" FromRole="PostCategories" ToRole="Post" />
         </EntityType>
         <EntityType Name="ProductCategories">
           <Key>
             <PropertyRef Name="ID" />
           </Key>
           <Property Name="ID" Type="Int32" Nullable="false" />
-          <Property Name="Name" Type="String" MaxLength="250" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="Alas" Type="String" MaxLength="250" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="250" FixedLength="false" Unicode="true" />
+          <Property Name="Alas" Type="String" Nullable="false" MaxLength="250" FixedLength="false" Unicode="false" />
           <Property Name="ParentID" Type="Int32" />
           <Property Name="Image" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
           <Property Name="Description" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
@@ -529,15 +583,15 @@
           <Property Name="UpdateBy" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="Status" Type="Boolean" Nullable="false" />
           <Property Name="HomeFlag" Type="Boolean" Nullable="false" />
-          <NavigationProperty Name="Products" Relationship="Self.FK_Products_ProductCategories" FromRole="ProductCategories" ToRole="Products" />
+          <NavigationProperty Name="Products" Relationship="ShopExampleModel.FK_Products_ProductCategories" FromRole="ProductCategories" ToRole="Products" />
         </EntityType>
         <EntityType Name="Products">
           <Key>
             <PropertyRef Name="ID" />
           </Key>
           <Property Name="ID" Type="Int32" Nullable="false" />
-          <Property Name="Name" Type="String" MaxLength="250" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="Alas" Type="String" MaxLength="250" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="250" FixedLength="false" Unicode="true" />
+          <Property Name="Alas" Type="String" Nullable="false" MaxLength="250" FixedLength="false" Unicode="false" />
           <Property Name="CategoryID" Type="Int32" />
           <Property Name="Image" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
           <Property Name="MoreImage" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
@@ -555,19 +609,19 @@
           <Property Name="Status" Type="Boolean" Nullable="false" />
           <Property Name="HomeFlag" Type="Boolean" />
           <Property Name="ViewCount" Type="Int32" />
-          <NavigationProperty Name="OrderDetail" Relationship="Self.FK_OrderDetail_Products" FromRole="Products" ToRole="OrderDetail" />
-          <NavigationProperty Name="ProductCategories" Relationship="Self.FK_Products_ProductCategories" FromRole="Products" ToRole="ProductCategories" />
-          <NavigationProperty Name="Tags" Relationship="Self.ProductTags" FromRole="Products" ToRole="Tags" />
+          <NavigationProperty Name="OrderDetail" Relationship="ShopExampleModel.FK_OrderDetail_Products" FromRole="Products" ToRole="OrderDetail" />
+          <NavigationProperty Name="ProductCategories" Relationship="ShopExampleModel.FK_Products_ProductCategories" FromRole="Products" ToRole="ProductCategories" />
+          <NavigationProperty Name="Tags" Relationship="ShopExampleModel.ProductTags" FromRole="Products" ToRole="Tags" />
         </EntityType>
         <EntityType Name="Slides">
           <Key>
             <PropertyRef Name="ID" />
           </Key>
           <Property Name="ID" Type="Int32" Nullable="false" />
-          <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="Description" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
-          <Property Name="Image" Type="String" MaxLength="500" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="URL" Type="String" MaxLength="590" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Image" Type="String" Nullable="false" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="URL" Type="String" Nullable="false" MaxLength="590" FixedLength="false" Unicode="true" />
           <Property Name="DisplayOrder" Type="Int32" />
           <Property Name="Status" Type="Boolean" />
         </EntityType>
@@ -589,7 +643,7 @@
           <Key>
             <PropertyRef Name="diagram_id" />
           </Key>
-          <Property Name="name" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="name" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
           <Property Name="principal_id" Type="Int32" Nullable="false" />
           <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="version" Type="Int32" />
@@ -608,11 +662,11 @@
           <Key>
             <PropertyRef Name="ID" />
           </Key>
-          <Property Name="ID" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="ID" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="Type" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <NavigationProperty Name="Post" Relationship="Self.PostTags" FromRole="Tags" ToRole="Post" />
-          <NavigationProperty Name="Products" Relationship="Self.ProductTags" FromRole="Tags" ToRole="Products" />
+          <NavigationProperty Name="Post" Relationship="ShopExampleModel.PostTags1" FromRole="Tags" ToRole="Post" />
+          <NavigationProperty Name="Products" Relationship="ShopExampleModel.ProductTags" FromRole="Tags" ToRole="Products" />
         </EntityType>
         <EntityType Name="VisitorStatistics">
           <Key>
@@ -620,11 +674,11 @@
           </Key>
           <Property Name="ID" Type="Guid" Nullable="false" />
           <Property Name="VisitedDate" Type="DateTime" Nullable="false" Precision="3" />
-          <Property Name="IP" Type="String" MaxLength="50" FixedLength="true" Unicode="true" Nullable="false" />
+          <Property Name="IP" Type="String" Nullable="false" MaxLength="50" FixedLength="true" Unicode="true" />
         </EntityType>
         <Association Name="FK_Menus_MenuGroups">
-          <End Role="MenuGroups" Type="Self.MenuGroups" Multiplicity="1" />
-          <End Role="Menus" Type="Self.Menus" Multiplicity="0..1" />
+          <End Type="ShopExampleModel.MenuGroups" Role="MenuGroups" Multiplicity="1" />
+          <End Type="ShopExampleModel.Menus" Role="Menus" Multiplicity="0..1" />
           <ReferentialConstraint>
             <Principal Role="MenuGroups">
               <PropertyRef Name="ID" />
@@ -635,8 +689,8 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_OrderDetail_Orders">
-          <End Role="Orders" Type="Self.Orders" Multiplicity="1" />
-          <End Role="OrderDetail" Type="Self.OrderDetail" Multiplicity="*" />
+          <End Type="ShopExampleModel.Orders" Role="Orders" Multiplicity="1" />
+          <End Type="ShopExampleModel.OrderDetail" Role="OrderDetail" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Orders">
               <PropertyRef Name="ID" />
@@ -647,8 +701,8 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_OrderDetail_Products">
-          <End Role="Products" Type="Self.Products" Multiplicity="1" />
-          <End Role="OrderDetail" Type="Self.OrderDetail" Multiplicity="*" />
+          <End Type="ShopExampleModel.Products" Role="Products" Multiplicity="1" />
+          <End Type="ShopExampleModel.OrderDetail" Role="OrderDetail" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Products">
               <PropertyRef Name="ID" />
@@ -659,8 +713,8 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_Post_PostCategories">
-          <End Role="PostCategories" Type="Self.PostCategories" Multiplicity="1" />
-          <End Role="Post" Type="Self.Post" Multiplicity="0..1" />
+          <End Type="ShopExampleModel.PostCategories" Role="PostCategories" Multiplicity="1" />
+          <End Type="ShopExampleModel.Post" Role="Post" Multiplicity="0..1" />
           <ReferentialConstraint>
             <Principal Role="PostCategories">
               <PropertyRef Name="ID" />
@@ -671,8 +725,8 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_Products_ProductCategories">
-          <End Role="ProductCategories" Type="Self.ProductCategories" Multiplicity="0..1" />
-          <End Role="Products" Type="Self.Products" Multiplicity="*" />
+          <End Type="ShopExampleModel.ProductCategories" Role="ProductCategories" Multiplicity="0..1" />
+          <End Type="ShopExampleModel.Products" Role="Products" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="ProductCategories">
               <PropertyRef Name="ID" />
@@ -682,304 +736,266 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="PostTags">
-          <End Role="Post" Type="Self.Post" Multiplicity="*" />
-          <End Role="Tags" Type="Self.Tags" Multiplicity="*" />
+        <Association Name="PostTags1">
+          <End Type="ShopExampleModel.Post" Role="Post" Multiplicity="*" />
+          <End Type="ShopExampleModel.Tags" Role="Tags" Multiplicity="*" />
         </Association>
         <Association Name="ProductTags">
-          <End Role="Products" Type="Self.Products" Multiplicity="*" />
-          <End Role="Tags" Type="Self.Tags" Multiplicity="*" />
+          <End Type="ShopExampleModel.Products" Role="Products" Multiplicity="*" />
+          <End Type="ShopExampleModel.Tags" Role="Tags" Multiplicity="*" />
         </Association>
-        <EntityContainer Name="ShopExampleEntities" annotation:LazyLoadingEnabled="true">
-          <EntitySet Name="Footers" EntityType="Self.Footers" />
-          <EntitySet Name="MenuGroups" EntityType="Self.MenuGroups" />
-          <EntitySet Name="Menus" EntityType="Self.Menus" />
-          <EntitySet Name="OrderDetail" EntityType="Self.OrderDetail" />
-          <EntitySet Name="Orders" EntityType="Self.Orders" />
-          <EntitySet Name="Pages" EntityType="Self.Pages" />
-          <EntitySet Name="Post" EntityType="Self.Post" />
-          <EntitySet Name="PostCategories" EntityType="Self.PostCategories" />
-          <EntitySet Name="ProductCategories" EntityType="Self.ProductCategories" />
-          <EntitySet Name="Products" EntityType="Self.Products" />
-          <EntitySet Name="Slides" EntityType="Self.Slides" />
-          <EntitySet Name="SupportOnline" EntityType="Self.SupportOnline" />
-          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" />
-          <EntitySet Name="SystemConfigs" EntityType="Self.SystemConfigs" />
-          <EntitySet Name="Tags" EntityType="Self.Tags" />
-          <EntitySet Name="VisitorStatistics" EntityType="Self.VisitorStatistics" />
-          <AssociationSet Name="FK_Menus_MenuGroups" Association="Self.FK_Menus_MenuGroups">
-            <End Role="MenuGroups" EntitySet="MenuGroups" />
-            <End Role="Menus" EntitySet="Menus" />
-          </AssociationSet>
-          <AssociationSet Name="FK_OrderDetail_Orders" Association="Self.FK_OrderDetail_Orders">
-            <End Role="Orders" EntitySet="Orders" />
-            <End Role="OrderDetail" EntitySet="OrderDetail" />
-          </AssociationSet>
-          <AssociationSet Name="FK_OrderDetail_Products" Association="Self.FK_OrderDetail_Products">
-            <End Role="Products" EntitySet="Products" />
-            <End Role="OrderDetail" EntitySet="OrderDetail" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Post_PostCategories" Association="Self.FK_Post_PostCategories">
-            <End Role="PostCategories" EntitySet="PostCategories" />
-            <End Role="Post" EntitySet="Post" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Products_ProductCategories" Association="Self.FK_Products_ProductCategories">
-            <End Role="ProductCategories" EntitySet="ProductCategories" />
-            <End Role="Products" EntitySet="Products" />
-          </AssociationSet>
-          <AssociationSet Name="PostTags" Association="Self.PostTags">
-            <End Role="Post" EntitySet="Post" />
-            <End Role="Tags" EntitySet="Tags" />
-          </AssociationSet>
-          <AssociationSet Name="ProductTags" Association="Self.ProductTags">
-            <End Role="Products" EntitySet="Products" />
-            <End Role="Tags" EntitySet="Tags" />
-          </AssociationSet>
-        </EntityContainer>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
         <EntityContainerMapping StorageEntityContainer="ShopExampleModelStoreContainer" CdmEntityContainer="ShopExampleEntities">
+          <EntitySetMapping Name="PostTags">
+            <EntityTypeMapping TypeName="ShopExampleModel.PostTags">
+              <MappingFragment StoreEntitySet="PostTags">
+                <ScalarProperty Name="TagID" ColumnName="TagID" />
+                <ScalarProperty Name="PostID" ColumnName="PostID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
           <EntitySetMapping Name="Footers">
             <EntityTypeMapping TypeName="ShopExampleModel.Footers">
               <MappingFragment StoreEntitySet="Footers">
-                <ScalarProperty Name="ID" ColumnName="ID" />
                 <ScalarProperty Name="Content" ColumnName="Content" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="MenuGroups">
             <EntityTypeMapping TypeName="ShopExampleModel.MenuGroups">
               <MappingFragment StoreEntitySet="MenuGroups">
-                <ScalarProperty Name="ID" ColumnName="ID" />
                 <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Menus">
             <EntityTypeMapping TypeName="ShopExampleModel.Menus">
               <MappingFragment StoreEntitySet="Menus">
-                <ScalarProperty Name="ID" ColumnName="ID" />
-                <ScalarProperty Name="Name" ColumnName="Name" />
-                <ScalarProperty Name="URL" ColumnName="URL" />
-                <ScalarProperty Name="GroupID" ColumnName="GroupID" />
-                <ScalarProperty Name="DIsplayOrder" ColumnName="DIsplayOrder" />
-                <ScalarProperty Name="Target" ColumnName="Target" />
                 <ScalarProperty Name="Status" ColumnName="Status" />
+                <ScalarProperty Name="Target" ColumnName="Target" />
+                <ScalarProperty Name="DIsplayOrder" ColumnName="DIsplayOrder" />
+                <ScalarProperty Name="GroupID" ColumnName="GroupID" />
+                <ScalarProperty Name="URL" ColumnName="URL" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="OrderDetail">
             <EntityTypeMapping TypeName="ShopExampleModel.OrderDetail">
               <MappingFragment StoreEntitySet="OrderDetail">
-                <ScalarProperty Name="OrderID" ColumnName="OrderID" />
-                <ScalarProperty Name="ProductID" ColumnName="ProductID" />
                 <ScalarProperty Name="Quatity" ColumnName="Quatity" />
+                <ScalarProperty Name="ProductID" ColumnName="ProductID" />
+                <ScalarProperty Name="OrderID" ColumnName="OrderID" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Orders">
             <EntityTypeMapping TypeName="ShopExampleModel.Orders">
               <MappingFragment StoreEntitySet="Orders">
-                <ScalarProperty Name="ID" ColumnName="ID" />
-                <ScalarProperty Name="Name" ColumnName="Name" />
-                <ScalarProperty Name="Address" ColumnName="Address" />
-                <ScalarProperty Name="Email" ColumnName="Email" />
-                <ScalarProperty Name="Phone" ColumnName="Phone" />
-                <ScalarProperty Name="Message" ColumnName="Message" />
-                <ScalarProperty Name="CreateDate" ColumnName="CreateDate" />
-                <ScalarProperty Name="CreateBy" ColumnName="CreateBy" />
-                <ScalarProperty Name="PayMentMeThod" ColumnName="PayMentMeThod" />
-                <ScalarProperty Name="PayMentStatus" ColumnName="PayMentStatus" />
                 <ScalarProperty Name="Status" ColumnName="Status" />
+                <ScalarProperty Name="PayMentStatus" ColumnName="PayMentStatus" />
+                <ScalarProperty Name="PayMentMeThod" ColumnName="PayMentMeThod" />
+                <ScalarProperty Name="CreateBy" ColumnName="CreateBy" />
+                <ScalarProperty Name="CreateDate" ColumnName="CreateDate" />
+                <ScalarProperty Name="Message" ColumnName="Message" />
+                <ScalarProperty Name="Phone" ColumnName="Phone" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="Address" ColumnName="Address" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Pages">
             <EntityTypeMapping TypeName="ShopExampleModel.Pages">
               <MappingFragment StoreEntitySet="Pages">
-                <ScalarProperty Name="ID" ColumnName="ID" />
-                <ScalarProperty Name="Name" ColumnName="Name" />
-                <ScalarProperty Name="Content" ColumnName="Content" />
-                <ScalarProperty Name="MetaKeyword" ColumnName="MetaKeyword" />
-                <ScalarProperty Name="MetaDescriptiom" ColumnName="MetaDescriptiom" />
                 <ScalarProperty Name="Status" ColumnName="Status" />
+                <ScalarProperty Name="MetaDescriptiom" ColumnName="MetaDescriptiom" />
+                <ScalarProperty Name="MetaKeyword" ColumnName="MetaKeyword" />
+                <ScalarProperty Name="Content" ColumnName="Content" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Post">
             <EntityTypeMapping TypeName="ShopExampleModel.Post">
               <MappingFragment StoreEntitySet="Post">
-                <ScalarProperty Name="ID" ColumnName="ID" />
-                <ScalarProperty Name="Name" ColumnName="Name" />
-                <ScalarProperty Name="Alas" ColumnName="Alas" />
-                <ScalarProperty Name="CategoryID" ColumnName="CategoryID" />
-                <ScalarProperty Name="Image" ColumnName="Image" />
-                <ScalarProperty Name="Description" ColumnName="Description" />
-                <ScalarProperty Name="MetaKeyword" ColumnName="MetaKeyword" />
-                <ScalarProperty Name="MetaDescription" ColumnName="MetaDescription" />
-                <ScalarProperty Name="Content" ColumnName="Content" />
-                <ScalarProperty Name="CreateDate" ColumnName="CreateDate" />
-                <ScalarProperty Name="CreateBy" ColumnName="CreateBy" />
-                <ScalarProperty Name="UpdateDate" ColumnName="UpdateDate" />
-                <ScalarProperty Name="UpdateBy" ColumnName="UpdateBy" />
-                <ScalarProperty Name="Status" ColumnName="Status" />
-                <ScalarProperty Name="HomeFlag" ColumnName="HomeFlag" />
                 <ScalarProperty Name="ViewCount" ColumnName="ViewCount" />
+                <ScalarProperty Name="HomeFlag" ColumnName="HomeFlag" />
+                <ScalarProperty Name="Status" ColumnName="Status" />
+                <ScalarProperty Name="UpdateBy" ColumnName="UpdateBy" />
+                <ScalarProperty Name="UpdateDate" ColumnName="UpdateDate" />
+                <ScalarProperty Name="CreateBy" ColumnName="CreateBy" />
+                <ScalarProperty Name="CreateDate" ColumnName="CreateDate" />
+                <ScalarProperty Name="Content" ColumnName="Content" />
+                <ScalarProperty Name="MetaDescription" ColumnName="MetaDescription" />
+                <ScalarProperty Name="MetaKeyword" ColumnName="MetaKeyword" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="Image" ColumnName="Image" />
+                <ScalarProperty Name="CategoryID" ColumnName="CategoryID" />
+                <ScalarProperty Name="Alas" ColumnName="Alas" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="PostCategories">
             <EntityTypeMapping TypeName="ShopExampleModel.PostCategories">
               <MappingFragment StoreEntitySet="PostCategories">
-                <ScalarProperty Name="ID" ColumnName="ID" />
-                <ScalarProperty Name="PostName" ColumnName="PostName" />
-                <ScalarProperty Name="Alas" ColumnName="Alas" />
-                <ScalarProperty Name="ParentID" ColumnName="ParentID" />
-                <ScalarProperty Name="Image" ColumnName="Image" />
-                <ScalarProperty Name="Description" ColumnName="Description" />
-                <ScalarProperty Name="DisplayOder" ColumnName="DisplayOder" />
-                <ScalarProperty Name="MetaKeyword" ColumnName="MetaKeyword" />
-                <ScalarProperty Name="MetaDescription" ColumnName="MetaDescription" />
-                <ScalarProperty Name="CreateDate" ColumnName="CreateDate" />
-                <ScalarProperty Name="CreateBy" ColumnName="CreateBy" />
-                <ScalarProperty Name="UpdateDate" ColumnName="UpdateDate" />
-                <ScalarProperty Name="UpdateBy" ColumnName="UpdateBy" />
-                <ScalarProperty Name="Status" ColumnName="Status" />
                 <ScalarProperty Name="HomeFlag" ColumnName="HomeFlag" />
+                <ScalarProperty Name="Status" ColumnName="Status" />
+                <ScalarProperty Name="UpdateBy" ColumnName="UpdateBy" />
+                <ScalarProperty Name="UpdateDate" ColumnName="UpdateDate" />
+                <ScalarProperty Name="CreateBy" ColumnName="CreateBy" />
+                <ScalarProperty Name="CreateDate" ColumnName="CreateDate" />
+                <ScalarProperty Name="MetaDescription" ColumnName="MetaDescription" />
+                <ScalarProperty Name="MetaKeyword" ColumnName="MetaKeyword" />
+                <ScalarProperty Name="DisplayOder" ColumnName="DisplayOder" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="Image" ColumnName="Image" />
+                <ScalarProperty Name="ParentID" ColumnName="ParentID" />
+                <ScalarProperty Name="Alas" ColumnName="Alas" />
+                <ScalarProperty Name="PostName" ColumnName="PostName" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="ProductCategories">
             <EntityTypeMapping TypeName="ShopExampleModel.ProductCategories">
               <MappingFragment StoreEntitySet="ProductCategories">
-                <ScalarProperty Name="ID" ColumnName="ID" />
-                <ScalarProperty Name="Name" ColumnName="Name" />
-                <ScalarProperty Name="Alas" ColumnName="Alas" />
-                <ScalarProperty Name="ParentID" ColumnName="ParentID" />
-                <ScalarProperty Name="Image" ColumnName="Image" />
-                <ScalarProperty Name="Description" ColumnName="Description" />
-                <ScalarProperty Name="DisplayOder" ColumnName="DisplayOder" />
-                <ScalarProperty Name="MetaKeyword" ColumnName="MetaKeyword" />
-                <ScalarProperty Name="MetaDescription" ColumnName="MetaDescription" />
-                <ScalarProperty Name="CreateDate" ColumnName="CreateDate" />
-                <ScalarProperty Name="CreateBy" ColumnName="CreateBy" />
-                <ScalarProperty Name="UpdateDate" ColumnName="UpdateDate" />
-                <ScalarProperty Name="UpdateBy" ColumnName="UpdateBy" />
-                <ScalarProperty Name="Status" ColumnName="Status" />
                 <ScalarProperty Name="HomeFlag" ColumnName="HomeFlag" />
+                <ScalarProperty Name="Status" ColumnName="Status" />
+                <ScalarProperty Name="UpdateBy" ColumnName="UpdateBy" />
+                <ScalarProperty Name="UpdateDate" ColumnName="UpdateDate" />
+                <ScalarProperty Name="CreateBy" ColumnName="CreateBy" />
+                <ScalarProperty Name="CreateDate" ColumnName="CreateDate" />
+                <ScalarProperty Name="MetaDescription" ColumnName="MetaDescription" />
+                <ScalarProperty Name="MetaKeyword" ColumnName="MetaKeyword" />
+                <ScalarProperty Name="DisplayOder" ColumnName="DisplayOder" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="Image" ColumnName="Image" />
+                <ScalarProperty Name="ParentID" ColumnName="ParentID" />
+                <ScalarProperty Name="Alas" ColumnName="Alas" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Products">
             <EntityTypeMapping TypeName="ShopExampleModel.Products">
               <MappingFragment StoreEntitySet="Products">
-                <ScalarProperty Name="ID" ColumnName="ID" />
-                <ScalarProperty Name="Name" ColumnName="Name" />
-                <ScalarProperty Name="Alas" ColumnName="Alas" />
-                <ScalarProperty Name="CategoryID" ColumnName="CategoryID" />
-                <ScalarProperty Name="Image" ColumnName="Image" />
-                <ScalarProperty Name="MoreImage" ColumnName="MoreImage" />
-                <ScalarProperty Name="Price" ColumnName="Price" />
-                <ScalarProperty Name="Promotion" ColumnName="Promotion" />
-                <ScalarProperty Name="Waranty" ColumnName="Waranty" />
-                <ScalarProperty Name="Description" ColumnName="Description" />
-                <ScalarProperty Name="MetaKeyword" ColumnName="MetaKeyword" />
-                <ScalarProperty Name="MetaDescription" ColumnName="MetaDescription" />
-                <ScalarProperty Name="Content" ColumnName="Content" />
-                <ScalarProperty Name="CreateDate" ColumnName="CreateDate" />
-                <ScalarProperty Name="CreateBy" ColumnName="CreateBy" />
-                <ScalarProperty Name="UpdateDate" ColumnName="UpdateDate" />
-                <ScalarProperty Name="UpdateBy" ColumnName="UpdateBy" />
-                <ScalarProperty Name="Status" ColumnName="Status" />
-                <ScalarProperty Name="HomeFlag" ColumnName="HomeFlag" />
                 <ScalarProperty Name="ViewCount" ColumnName="ViewCount" />
+                <ScalarProperty Name="HomeFlag" ColumnName="HomeFlag" />
+                <ScalarProperty Name="Status" ColumnName="Status" />
+                <ScalarProperty Name="UpdateBy" ColumnName="UpdateBy" />
+                <ScalarProperty Name="UpdateDate" ColumnName="UpdateDate" />
+                <ScalarProperty Name="CreateBy" ColumnName="CreateBy" />
+                <ScalarProperty Name="CreateDate" ColumnName="CreateDate" />
+                <ScalarProperty Name="Content" ColumnName="Content" />
+                <ScalarProperty Name="MetaDescription" ColumnName="MetaDescription" />
+                <ScalarProperty Name="MetaKeyword" ColumnName="MetaKeyword" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="Waranty" ColumnName="Waranty" />
+                <ScalarProperty Name="Promotion" ColumnName="Promotion" />
+                <ScalarProperty Name="Price" ColumnName="Price" />
+                <ScalarProperty Name="MoreImage" ColumnName="MoreImage" />
+                <ScalarProperty Name="Image" ColumnName="Image" />
+                <ScalarProperty Name="CategoryID" ColumnName="CategoryID" />
+                <ScalarProperty Name="Alas" ColumnName="Alas" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Slides">
             <EntityTypeMapping TypeName="ShopExampleModel.Slides">
               <MappingFragment StoreEntitySet="Slides">
-                <ScalarProperty Name="ID" ColumnName="ID" />
-                <ScalarProperty Name="Name" ColumnName="Name" />
-                <ScalarProperty Name="Description" ColumnName="Description" />
-                <ScalarProperty Name="Image" ColumnName="Image" />
-                <ScalarProperty Name="URL" ColumnName="URL" />
-                <ScalarProperty Name="DisplayOrder" ColumnName="DisplayOrder" />
                 <ScalarProperty Name="Status" ColumnName="Status" />
+                <ScalarProperty Name="DisplayOrder" ColumnName="DisplayOrder" />
+                <ScalarProperty Name="URL" ColumnName="URL" />
+                <ScalarProperty Name="Image" ColumnName="Image" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="SupportOnline">
             <EntityTypeMapping TypeName="ShopExampleModel.SupportOnline">
               <MappingFragment StoreEntitySet="SupportOnline">
-                <ScalarProperty Name="ID" ColumnName="ID" />
-                <ScalarProperty Name="Name" ColumnName="Name" />
-                <ScalarProperty Name="Department" ColumnName="Department" />
-                <ScalarProperty Name="Skype" ColumnName="Skype" />
-                <ScalarProperty Name="Mobile" ColumnName="Mobile" />
-                <ScalarProperty Name="Email" ColumnName="Email" />
-                <ScalarProperty Name="Yahoo" ColumnName="Yahoo" />
-                <ScalarProperty Name="Facebook" ColumnName="Facebook" />
                 <ScalarProperty Name="Status" ColumnName="Status" />
+                <ScalarProperty Name="Facebook" ColumnName="Facebook" />
+                <ScalarProperty Name="Yahoo" ColumnName="Yahoo" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="Mobile" ColumnName="Mobile" />
+                <ScalarProperty Name="Skype" ColumnName="Skype" />
+                <ScalarProperty Name="Department" ColumnName="Department" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="sysdiagrams">
             <EntityTypeMapping TypeName="ShopExampleModel.sysdiagrams">
               <MappingFragment StoreEntitySet="sysdiagrams">
-                <ScalarProperty Name="name" ColumnName="name" />
-                <ScalarProperty Name="principal_id" ColumnName="principal_id" />
-                <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
-                <ScalarProperty Name="version" ColumnName="version" />
                 <ScalarProperty Name="definition" ColumnName="definition" />
+                <ScalarProperty Name="version" ColumnName="version" />
+                <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
+                <ScalarProperty Name="principal_id" ColumnName="principal_id" />
+                <ScalarProperty Name="name" ColumnName="name" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="SystemConfigs">
             <EntityTypeMapping TypeName="ShopExampleModel.SystemConfigs">
               <MappingFragment StoreEntitySet="SystemConfigs">
-                <ScalarProperty Name="ID" ColumnName="ID" />
-                <ScalarProperty Name="Code" ColumnName="Code" />
-                <ScalarProperty Name="ValueString" ColumnName="ValueString" />
                 <ScalarProperty Name="ValueInt" ColumnName="ValueInt" />
+                <ScalarProperty Name="ValueString" ColumnName="ValueString" />
+                <ScalarProperty Name="Code" ColumnName="Code" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Tags">
             <EntityTypeMapping TypeName="ShopExampleModel.Tags">
               <MappingFragment StoreEntitySet="Tags">
-                <ScalarProperty Name="ID" ColumnName="ID" />
-                <ScalarProperty Name="Name" ColumnName="Name" />
                 <ScalarProperty Name="Type" ColumnName="Type" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="VisitorStatistics">
             <EntityTypeMapping TypeName="ShopExampleModel.VisitorStatistics">
               <MappingFragment StoreEntitySet="VisitorStatistics">
-                <ScalarProperty Name="ID" ColumnName="ID" />
-                <ScalarProperty Name="VisitedDate" ColumnName="VisitedDate" />
                 <ScalarProperty Name="IP" ColumnName="IP" />
+                <ScalarProperty Name="VisitedDate" ColumnName="VisitedDate" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <AssociationSetMapping Name="PostTags" TypeName="ShopExampleModel.PostTags" StoreEntitySet="PostTags">
+          <AssociationSetMapping Name="PostTags1" TypeName="ShopExampleModel.PostTags1" StoreEntitySet="PostTags">
+            <EndProperty Name="Tags">
+              <ScalarProperty Name="ID" ColumnName="TagID" />
+            </EndProperty>
             <EndProperty Name="Post">
               <ScalarProperty Name="ID" ColumnName="PostID" />
             </EndProperty>
-            <EndProperty Name="Tags">
-              <ScalarProperty Name="ID" ColumnName="TagID" />
-            </EndProperty>
           </AssociationSetMapping>
           <AssociationSetMapping Name="ProductTags" TypeName="ShopExampleModel.ProductTags" StoreEntitySet="ProductTags">
-            <EndProperty Name="Products">
-              <ScalarProperty Name="ID" ColumnName="ProductID" />
-            </EndProperty>
             <EndProperty Name="Tags">
               <ScalarProperty Name="ID" ColumnName="TagID" />
+            </EndProperty>
+            <EndProperty Name="Products">
+              <ScalarProperty Name="ID" ColumnName="ProductID" />
             </EndProperty>
           </AssociationSetMapping>
         </EntityContainerMapping>
