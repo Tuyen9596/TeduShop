@@ -12,12 +12,14 @@ namespace TeduShop.Model
     using System;
     using System.Collections.Generic;
     
-    public partial class sysdiagrams
+    public partial class Tags
     {
-        public string name { get; set; }
-        public int principal_id { get; set; }
-        public int diagram_id { get; set; }
-        public Nullable<int> version { get; set; }
-        public byte[] definition { get; set; }
+    
+        public string ID { get; set; }
+        public string Name { get; set; }
+        public string Type { get; set; }
+    
+        public virtual ICollection<Post> Post { get; set; }
+        public virtual ICollection<Product> Products { get; set; }
     }
 }

@@ -113,42 +113,46 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>TeduShop.tt</DependentUpon>
     </Compile>
-    <Compile Include="TeduShop.Designer.cs">
+    <Compile Include="TeduShopDataContext.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>TeduShop.edmx</DependentUpon>
+      <DependentUpon>TeduShopDataContext.edmx</DependentUpon>
     </Compile>
     <Compile Include="VisitorStatistics.cs">
       <DependentUpon>TeduShop.tt</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <EntityDeploy Include="TeduShop.edmx">
+    <EntityDeploy Include="TeduShopDataContext.edmx">
       <Generator>EntityModelCodeGenerator</Generator>
-      <LastGenOutput>TeduShop.Designer.cs</LastGenOutput>
+      <LastGenOutput>TeduShopDataContext.Designer.cs</LastGenOutput>
     </EntityDeploy>
   </ItemGroup>
   <ItemGroup>
     <None Include="App.Config" />
     <None Include="packages.config" />
-    <None Include="TeduShop.edmx.diagram">
-      <DependentUpon>TeduShop.edmx</DependentUpon>
+    <None Include="TeduShopDataContext.edmx.diagram">
+      <DependentUpon>TeduShopDataContext.edmx</DependentUpon>
     </None>
   </ItemGroup>
   <ItemGroup>
     <Content Include="TeduShop.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>TeduShop.edmx</DependentUpon>
+      <DependentUpon>TeduShopDataContext.edmx</DependentUpon>
       <LastGenOutput>TeduShop.Context.cs</LastGenOutput>
     </Content>
     <Content Include="TeduShop.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>TeduShop.edmx</DependentUpon>
+      <DependentUpon>TeduShopDataContext.edmx</DependentUpon>
       <LastGenOutput>TeduShop.cs</LastGenOutput>
     </Content>
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Abstract\" />
+    <Folder Include="Model\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
