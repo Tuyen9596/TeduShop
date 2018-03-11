@@ -6,7 +6,7 @@ namespace TeduShop.Model
     using System.ComponentModel.DataAnnotations.Schema;
 
     [Table("Menus")]
-    public partial class Menus
+    public partial class Menu
     {
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]

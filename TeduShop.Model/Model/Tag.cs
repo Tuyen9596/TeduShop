@@ -14,17 +14,17 @@ namespace TeduShop.Model
     using System.ComponentModel.DataAnnotations;
     using System.ComponentModel.DataAnnotations.Schema;
 
-    [Table("OrderDetails")]
-    public partial class OrderDetail
+    [Table("Tags")]
+    public partial class Tag
     {
-        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         [Key]
-        public int OrderID { get; set; }
-        public int ProductID { get; set; }
-        public Nullable<int> Quatity { get; set; }
-        [ForeignKey("OrderID")]
-        public virtual Order Orders { get; set; }
-        [ForeignKey("ProductID")]
-        public virtual Product Products { get; set; }
+        [Column(TypeName = "varchar")]
+        [MaxLength(50)]
+        public string ID { get; set; }
+        public string Name { get; set; }
+        public string Type { get; set; }
+    
+        public virtual ICollection<Post> Post { get; set; }
+        public virtual ICollection<Product> Products { get; set; }
     }
 }

@@ -14,12 +14,25 @@ namespace TeduShop.Model
     using System.ComponentModel.DataAnnotations;
     using System.ComponentModel.DataAnnotations.Schema;
 
-    [Table("PostTags")]
-    public partial class PostTags
+    [Table("Pages")]
+    public partial class Page
     {
+        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         [Key]
-        public int PostID { get; set; }
+        public int ID { get; set; }
         [Required]
-        public string TagID { get; set; }
+        [MaxLength(250)]
+        public string Name { get; set; }
+        [Column(TypeName ="varchar")]
+        [MaxLength(256)]
+        [Required]
+        public string Alias { set; get; }
+        [Required]
+        public string Content { get; set; }
+        //[Required]
+        //public string MetaKeyword { get; set; }
+        //[Required]
+        //public string MetaDescriptiom { get; set; }
+        //public Nullable<bool> Status { get; set; }
     }
 }

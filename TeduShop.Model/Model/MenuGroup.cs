@@ -15,6 +15,6 @@ namespace TeduShop.Model
         [Required]
         public string Name { get; set; }
     
-        public virtual IEnumerable<Menus> Menus { get; set; }
+        public virtual IEnumerable<Menu> Menus { get; set; }
     }
 }

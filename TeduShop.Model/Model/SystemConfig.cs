@@ -15,7 +15,7 @@ namespace TeduShop.Model
     using System.ComponentModel.DataAnnotations.Schema;
 
     [Table("SystemConfigs")]
-    public partial class SystemConfigs
+    public partial class SystemConfig
     {
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         [Key]

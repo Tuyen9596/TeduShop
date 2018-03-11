@@ -205,25 +205,9 @@
     <Content Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\TeduShop.Commom\TeduShop.Commom.csproj">
-      <Project>{dc6f9f64-186a-4137-aa7e-3d447ce91474}</Project>
-      <Name>TeduShop.Commom</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\TeduShop.Data\TeduShop.Data.csproj">
-      <Project>{cff3ccbc-6d16-4451-bfa1-3cbefbe84886}</Project>
-      <Name>TeduShop.Data</Name>
-    </ProjectReference>
     <ProjectReference Include="..\TeduShop.Model\TeduShop.Model.csproj">
       <Project>{8801893b-2aa2-4bad-82c3-95f05fe7c1e7}</Project>
       <Name>TeduShop.Model</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\TeduShop.Service\TeduShop.Service.csproj">
-      <Project>{54b6855c-f94c-4692-a5f6-cd5ce05c3828}</Project>
-      <Name>TeduShop.Service</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\TeduShop.UnitTest\TeduShop.UnitTest.csproj">
-      <Project>{bc48c295-66bf-4c95-8362-e88fddaa5c95}</Project>
-      <Name>TeduShop.UnitTest</Name>
     </ProjectReference>
   </ItemGroup>
   <PropertyGroup>

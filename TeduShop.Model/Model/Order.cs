@@ -14,21 +14,32 @@ namespace TeduShop.Model
     using System.ComponentModel.DataAnnotations;
     using System.ComponentModel.DataAnnotations.Schema;
 
-    [Table("Slides")]
-    public partial class Slides
+    [Table("Orders")]
+    public partial class Order
     {
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         [Key]
         public int ID { get; set; }
         [Required]
         public string Name { get; set; }
-        [MaxLength(256)]
-        public string Description { get; set; }
-        [MaxLength(256)]
-        public string Image { get; set; }
-        [MaxLength(256)]
-        public string URL { get; set; }
-        public Nullable<int> DisplayOrder { get; set; }
+        [Required]
+        public string Address { get; set; }
+        [Required]
+        public string Email { get; set; }
+        [Required]
+        public byte[] Phone { get; set; }
+        [Required]
+        public string Message { get; set; }
+        [Required]
+        public DateTime CreateDate { get; set; }
+        [Required]
+        public string CreateBy { get; set; }
+        [Required]
+        public string PayMentMeThod { get; set; }
+        [Required]
+        public string PayMentStatus { get; set; }
         public Nullable<bool> Status { get; set; }
+        [ForeignKey("ID")]
+        public virtual ICollection<OrderDetail> OrderDetail { get; set; }
     }
 }

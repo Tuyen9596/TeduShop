@@ -42,16 +42,6 @@
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\TeduShop.Commom\TeduShop.Commom.csproj">
-      <Project>{dc6f9f64-186a-4137-aa7e-3d447ce91474}</Project>
-      <Name>TeduShop.Commom</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\TeduShop.Data\TeduShop.Data.csproj">
-      <Project>{cff3ccbc-6d16-4451-bfa1-3cbefbe84886}</Project>
-      <Name>TeduShop.Data</Name>
-    </ProjectReference>
-  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

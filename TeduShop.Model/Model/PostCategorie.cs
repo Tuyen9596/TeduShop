@@ -14,32 +14,31 @@ namespace TeduShop.Model
     using System.ComponentModel.DataAnnotations;
     using System.ComponentModel.DataAnnotations.Schema;
 
-    [Table("Orders")]
-    public partial class Orders
+    [Table("PostCategories")]
+    public partial class PostCategorie
     {
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         [Key]
         public int ID { get; set; }
         [Required]
-        public string Name { get; set; }
+        public string PostName { get; set; }
         [Required]
-        public string Address { get; set; }
+        public string Alas { get; set; }
         [Required]
-        public string Email { get; set; }
+        public int ParentID { get; set; }
+        public string Image { get; set; }
+        public string Description { get; set; }
         [Required]
-        public byte[] Phone { get; set; }
-        [Required]
-        public string Message { get; set; }
-        [Required]
-        public DateTime CreateDate { get; set; }
-        [Required]
+        public int DisplayOder { get; set; }
+        public string MetaKeyword { get; set; }
+        public string MetaDescription { get; set; }
+        public Nullable<System.DateTime> CreateDate { get; set; }
         public string CreateBy { get; set; }
+        public Nullable<System.DateTime> UpdateDate { get; set; }
+        public string UpdateBy { get; set; }
         [Required]
-        public string PayMentMeThod { get; set; }
+        public bool Status { get; set; }
         [Required]
-        public string PayMentStatus { get; set; }
-        public Nullable<bool> Status { get; set; }
-        [ForeignKey("ID")]
-        public virtual ICollection<OrderDetail> OrderDetail { get; set; }
+        public bool HomeFlag { get; set; }
     }
 }

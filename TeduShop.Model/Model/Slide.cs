@@ -14,13 +14,21 @@ namespace TeduShop.Model
     using System.ComponentModel.DataAnnotations;
     using System.ComponentModel.DataAnnotations.Schema;
 
-    [Table("VisitorStatistics")]
-    public partial class VisitorStatistics
+    [Table("Slides")]
+    public partial class Slide
     {
+        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         [Key]
-        public System.Guid ID { get; set; }
-        public System.DateTime VisitedDate { get; set; }
-        [MaxLength(50)]
-        public string IPAddress { get; set; }
+        public int ID { get; set; }
+        [Required]
+        public string Name { get; set; }
+        [MaxLength(256)]
+        public string Description { get; set; }
+        [MaxLength(256)]
+        public string Image { get; set; }
+        [MaxLength(256)]
+        public string URL { get; set; }
+        public Nullable<int> DisplayOrder { get; set; }
+        public Nullable<bool> Status { get; set; }
     }
 }

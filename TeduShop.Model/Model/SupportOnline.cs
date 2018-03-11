@@ -19,7 +19,6 @@ namespace TeduShop.Model
     {
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         [Key]
-        [MaxLength(256)]
         public int ID { get; set; }
         [Required]
         public string Name { get; set; }

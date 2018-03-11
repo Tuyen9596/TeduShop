@@ -14,16 +14,13 @@ namespace TeduShop.Model
     using System.ComponentModel.DataAnnotations;
     using System.ComponentModel.DataAnnotations.Schema;
 
-    [Table("Tags")]
-    public partial class Tags
+    [Table("VisitorStatistics")]
+    public partial class VisitorStatistic
     {
-        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         [Key]
-        public string ID { get; set; }
-        public string Name { get; set; }
-        public string Type { get; set; }
-    
-        public virtual ICollection<Post> Post { get; set; }
-        public virtual ICollection<Product> Products { get; set; }
+        public System.Guid ID { get; set; }
+        public System.DateTime VisitedDate { get; set; }
+        [MaxLength(50)]
+        public string IPAddress { get; set; }
     }
 }

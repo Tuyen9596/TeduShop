@@ -28,7 +28,8 @@ namespace TeduShop.Model
         public string Alas { get; set; }
         public Nullable<int> CategoryID { get; set; }
         public string Image { get; set; }
-        public XElement MoreImage { get; set; }
+        [Column(TypeName ="Xml")]
+        public string MoreImage { get; set; }
         public int Price { get; set; }
         public Nullable<decimal> PromotionPrice { get; set; }
         public Nullable<int> Waranty { get; set; }
@@ -52,6 +53,6 @@ namespace TeduShop.Model
         public virtual ICollection<OrderDetail> OrderDetail { get; set; }
         [ForeignKey("CategoryID")]
         public virtual ProductCategorie ProductCategories { get; set; }
-        public virtual ICollection<Tags> Tags { get; set; }
+        public virtual ICollection<Tag> Tags { get; set; }
     }
 }
