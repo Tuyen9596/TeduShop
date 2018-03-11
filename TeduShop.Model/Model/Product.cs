@@ -11,41 +11,47 @@ namespace TeduShop.Model
 {
     using System;
     using System.Collections.Generic;
-    
-    public partial class Products
+    using System.ComponentModel.DataAnnotations;
+    using System.ComponentModel.DataAnnotations.Schema;
+    using System.Xml.Linq;
+
+    [Table("Product")]
+    public partial class Product
     {
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public Products()
-        {
-            this.OrderDetail = new HashSet<OrderDetail>();
-            this.Tags = new HashSet<Tags>();
-        }
-    
+    [Key]
+        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
+
         public int ID { get; set; }
+        [Required]
         public string Name { get; set; }
+        [Required]
         public string Alas { get; set; }
         public Nullable<int> CategoryID { get; set; }
         public string Image { get; set; }
-        public string MoreImage { get; set; }
-        public Nullable<decimal> Price { get; set; }
-        public Nullable<decimal> Promotion { get; set; }
+        public XElement MoreImage { get; set; }
+        public int Price { get; set; }
+        public Nullable<decimal> PromotionPrice { get; set; }
         public Nullable<int> Waranty { get; set; }
+        [Required]
         public string Description { get; set; }
+        [Required]
         public string MetaKeyword { get; set; }
+        [Required]
         public string MetaDescription { get; set; }
+        [Required]
         public string Content { get; set; }
         public Nullable<System.DateTime> CreateDate { get; set; }
         public string CreateBy { get; set; }
         public Nullable<System.DateTime> UpdateDate { get; set; }
         public string UpdateBy { get; set; }
+        [Required]
         public bool Status { get; set; }
         public Nullable<bool> HomeFlag { get; set; }
         public Nullable<int> ViewCount { get; set; }
     
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<OrderDetail> OrderDetail { get; set; }
-        public virtual ProductCategories ProductCategories { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        [ForeignKey("CategoryID")]
+        public virtual ProductCategorie ProductCategories { get; set; }
         public virtual ICollection<Tags> Tags { get; set; }
     }
 }

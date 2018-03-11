@@ -11,17 +11,18 @@ namespace TeduShop.Model
 {
     using System;
     using System.Collections.Generic;
-    
-    public partial class ProductCategories
+    using System.ComponentModel.DataAnnotations;
+    using System.ComponentModel.DataAnnotations.Schema;
+
+    [Table("ProductCategories")]
+    public partial class ProductCategorie
     {
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public ProductCategories()
-        {
-            this.Products = new HashSet<Products>();
-        }
-    
+    [Key]
+    [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int ID { get; set; }
+        [Required]
         public string Name { get; set; }
+        [Required]
         public string Alas { get; set; }
         public Nullable<int> ParentID { get; set; }
         public string Image { get; set; }
@@ -34,9 +35,7 @@ namespace TeduShop.Model
         public Nullable<System.DateTime> UpdateDate { get; set; }
         public string UpdateBy { get; set; }
         public bool Status { get; set; }
-        public bool HomeFlag { get; set; }
-    
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Products> Products { get; set; }
+        public bool? HomeFlag { get; set; }
+        public virtual ICollection<Product> Products { get; set; }
     }
 }

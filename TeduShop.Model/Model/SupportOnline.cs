@@ -11,10 +11,17 @@ namespace TeduShop.Model
 {
     using System;
     using System.Collections.Generic;
-    
+    using System.ComponentModel.DataAnnotations;
+    using System.ComponentModel.DataAnnotations.Schema;
+
+    [Table("SupportOnlines")]
     public partial class SupportOnline
     {
+        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
+        [Key]
+        [MaxLength(256)]
         public int ID { get; set; }
+        [Required]
         public string Name { get; set; }
         public string Department { get; set; }
         public string Skype { get; set; }

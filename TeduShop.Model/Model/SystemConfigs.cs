@@ -11,9 +11,14 @@ namespace TeduShop.Model
 {
     using System;
     using System.Collections.Generic;
-    
+    using System.ComponentModel.DataAnnotations;
+    using System.ComponentModel.DataAnnotations.Schema;
+
+    [Table("SystemConfigs")]
     public partial class SystemConfigs
     {
+        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
+        [Key]
         public int ID { get; set; }
         public string Code { get; set; }
         public string ValueString { get; set; }

@@ -11,10 +11,16 @@ namespace TeduShop.Model
 {
     using System;
     using System.Collections.Generic;
-    
-    public partial class Footers
+    using System.ComponentModel.DataAnnotations;
+    using System.ComponentModel.DataAnnotations.Schema;
+
+    [Table("Footer")]
+    public partial class Footer
     {
+        [Key]
+        [MaxLength(50)]
         public string ID { get; set; }
+        [Required]
         public string Content { get; set; }
     }
 }

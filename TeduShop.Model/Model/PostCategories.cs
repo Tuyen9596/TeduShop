@@ -11,25 +11,36 @@ namespace TeduShop.Model
 {
     using System;
     using System.Collections.Generic;
-    
+    using System.ComponentModel.DataAnnotations;
+    using System.ComponentModel.DataAnnotations.Schema;
+
+    [Table("PostCategories")]
     public partial class PostCategories
     {
+        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
+        [Key]
         public int ID { get; set; }
+        [Required]
         public string PostName { get; set; }
+        [Required]
         public string Alas { get; set; }
-        public Nullable<int> ParentID { get; set; }
+        [Required]
+        public int ParentID { get; set; }
         public string Image { get; set; }
         public string Description { get; set; }
-        public Nullable<int> DisplayOder { get; set; }
+        [Required]
+        public int DisplayOder { get; set; }
         public string MetaKeyword { get; set; }
         public string MetaDescription { get; set; }
         public Nullable<System.DateTime> CreateDate { get; set; }
         public string CreateBy { get; set; }
         public Nullable<System.DateTime> UpdateDate { get; set; }
         public string UpdateBy { get; set; }
+        [Required]
         public bool Status { get; set; }
+        [Required]
         public bool HomeFlag { get; set; }
-    
+        [ForeignKey("ParentID")]
         public virtual Post Post { get; set; }
     }
 }

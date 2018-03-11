@@ -11,34 +11,40 @@ namespace TeduShop.Model
 {
     using System;
     using System.Collections.Generic;
-    
+    using System.ComponentModel.DataAnnotations;
+    using System.ComponentModel.DataAnnotations.Schema;
+
+    [Table("Post")]
     public partial class Post
     {
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public Post()
-        {
-            this.Tags = new HashSet<Tags>();
-        }
-    
+        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
+        [Key]
+
         public int ID { get; set; }
+        [Required]
         public string Name { get; set; }
+        [Required]
         public string Alas { get; set; }
-        public Nullable<int> CategoryID { get; set; }
+        [Required]
+        public int CategoryID { get; set; }
+        [Required]
         public string Image { get; set; }
+        [Required]
         public string Description { get; set; }
+        [Required]
         public string MetaKeyword { get; set; }
         public string MetaDescription { get; set; }
         public string Content { get; set; }
-        public Nullable<System.DateTime> CreateDate { get; set; }
+        [Required]
+        public DateTime CreateDate { get; set; }
         public string CreateBy { get; set; }
         public Nullable<System.DateTime> UpdateDate { get; set; }
         public string UpdateBy { get; set; }
-        public bool Status { get; set; }
+        public bool? Status { get; set; }
         public Nullable<bool> HomeFlag { get; set; }
         public Nullable<int> ViewCount { get; set; }
-    
+        [ForeignKey("CategoryID")]
         public virtual PostCategories PostCategories { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Tags> Tags { get; set; }
     }
 }

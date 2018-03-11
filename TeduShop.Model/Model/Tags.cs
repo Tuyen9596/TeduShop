@@ -11,10 +11,14 @@ namespace TeduShop.Model
 {
     using System;
     using System.Collections.Generic;
-    
+    using System.ComponentModel.DataAnnotations;
+    using System.ComponentModel.DataAnnotations.Schema;
+
+    [Table("Tags")]
     public partial class Tags
     {
-    
+        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
+        [Key]
         public string ID { get; set; }
         public string Name { get; set; }
         public string Type { get; set; }

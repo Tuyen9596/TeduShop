@@ -11,14 +11,21 @@ namespace TeduShop.Model
 {
     using System;
     using System.Collections.Generic;
-    
+    using System.ComponentModel.DataAnnotations;
+    using System.ComponentModel.DataAnnotations.Schema;
+
+    [Table("OrderDetails")]
     public partial class OrderDetail
     {
+        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
+        [Key]
         public int OrderID { get; set; }
+        [Key]
         public int ProductID { get; set; }
         public Nullable<int> Quatity { get; set; }
-    
+        [ForeignKey("OrderID")]
         public virtual Orders Orders { get; set; }
-        public virtual Products Products { get; set; }
+        [ForeignKey("ProductID")]
+        public virtual Product Products { get; set; }
     }
 }

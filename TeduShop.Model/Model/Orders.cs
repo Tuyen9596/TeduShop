@@ -11,28 +11,35 @@ namespace TeduShop.Model
 {
     using System;
     using System.Collections.Generic;
-    
+    using System.ComponentModel.DataAnnotations;
+    using System.ComponentModel.DataAnnotations.Schema;
+
+    [Table("Orders")]
     public partial class Orders
     {
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public Orders()
-        {
-            this.OrderDetail = new HashSet<OrderDetail>();
-        }
-    
+        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
+        [Key]
         public int ID { get; set; }
+        [Required]
         public string Name { get; set; }
+        [Required]
         public string Address { get; set; }
+        [Required]
         public string Email { get; set; }
+        [Required]
         public byte[] Phone { get; set; }
+        [Required]
         public string Message { get; set; }
-        public Nullable<System.DateTime> CreateDate { get; set; }
+        [Required]
+        public DateTime CreateDate { get; set; }
+        [Required]
         public string CreateBy { get; set; }
+        [Required]
         public string PayMentMeThod { get; set; }
+        [Required]
         public string PayMentStatus { get; set; }
         public Nullable<bool> Status { get; set; }
-    
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        [ForeignKey("ID")]
         public virtual ICollection<OrderDetail> OrderDetail { get; set; }
     }
 }

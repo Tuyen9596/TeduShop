@@ -11,14 +11,28 @@ namespace TeduShop.Model
 {
     using System;
     using System.Collections.Generic;
-    
+    using System.ComponentModel.DataAnnotations;
+    using System.ComponentModel.DataAnnotations.Schema;
+
+    [Table("Pages")]
     public partial class Pages
     {
+        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
+        [Key]
         public int ID { get; set; }
+        [Required]
+        [MaxLength(250)]
         public string Name { get; set; }
+        [Column(TypeName ="varchar")]
+        [MaxLength(256)]
+        [Required]
+        public string Alias { set; get; }
+        [Required]
         public string Content { get; set; }
-        public string MetaKeyword { get; set; }
-        public string MetaDescriptiom { get; set; }
-        public Nullable<bool> Status { get; set; }
+        //[Required]
+        //public string MetaKeyword { get; set; }
+        //[Required]
+        //public string MetaDescriptiom { get; set; }
+        //public Nullable<bool> Status { get; set; }
     }
 }
