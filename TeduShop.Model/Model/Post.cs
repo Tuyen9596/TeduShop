@@ -43,8 +43,9 @@ namespace TeduShop.Model
         public bool? Status { get; set; }
         public Nullable<bool> HomeFlag { get; set; }
         public Nullable<int> ViewCount { get; set; }
-        [ForeignKey("ID")]
+        [ForeignKey("CategoryID")]
         public virtual PostCategorie PostCategories { get; set; }
+        [ForeignKey("ID")]
         public virtual ICollection<Tag> Tags { get; set; }
     }
 }

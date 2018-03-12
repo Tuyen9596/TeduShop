@@ -36,6 +36,7 @@ namespace TeduShop.Model
         public string UpdateBy { get; set; }
         public bool Status { get; set; }
         public bool? HomeFlag { get; set; }
+        [ForeignKey("ID")]
         public virtual ICollection<Product> Products { get; set; }
     }
 }

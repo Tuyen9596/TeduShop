@@ -18,8 +18,11 @@ namespace TeduShop.Model
     public partial class PostTag
     {
         [Key]
+        [Column(Order = 1)]
         public int PostID { get; set; }
         [Required]
+        [Key]
+        [Column(Order =2)]
         public string TagID { get; set; }
     }
 }
