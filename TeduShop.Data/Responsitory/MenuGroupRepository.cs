@@ -4,19 +4,18 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using TeduShop.Data.Infrastructure;
-using TeduShop.Model;
+using TeduShop.Model.Models;
 
-namespace TeduShop.Data.Responsitory
+namespace TeduShop.Data.Repositories
 {
-    public interface IMenuGroupRepository
+    public interface IMenuGroupRepository : IRepository<MenuGroup>
     {
-
     }
-    class MenuGroupRepository : RepositoryBase<MenuGroup>, IMenuGroupRepository
+
+    public class MenuGroupRepository : RepositoryBase<MenuGroup>, IMenuGroupRepository
     {
         public MenuGroupRepository(IDbFactory dbFactory) : base(dbFactory)
         {
-
         }
     }
 }

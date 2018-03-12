@@ -1,21 +1,25 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using TeduShop.Data.Infrastructure;
-using TeduShop.Model;
-namespace TeduShop.Data.Responsitory
+using TeduShop.Model.Models;
+
+namespace TeduShop.Data.Repositories
 {
-    public interface IProductCategoryRepository
+    public interface IProductCategoryRepository : IRepository<ProductCategory>
     {
-
+        IEnumerable<ProductCategory> GetByAlias(string alias);
     }
-    public class ProductCategoryRepository : RepositoryBase<ProductCategorie>,IProductCategoryRepository
-    {
-        public ProductCategoryRepository(IDbFactory dbFactory):base(dbFactory){
 
+    public class ProductCategoryRepository : RepositoryBase<ProductCategory>, IProductCategoryRepository
+    {
+        public ProductCategoryRepository(IDbFactory dbFactory)
+            : base(dbFactory)
+        {
         }
 
+        public IEnumerable<ProductCategory> GetByAlias(string alias)
+        {
+            return this.DbContext.ProductCategories.Where(x => x.Alias == alias);
+        }
     }
 }

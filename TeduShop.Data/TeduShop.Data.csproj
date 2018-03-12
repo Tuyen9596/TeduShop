@@ -62,9 +62,16 @@
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Responsitory\ApplicationGroupRepository.cs" />
+    <Compile Include="Responsitory\ApplicationRoleGroupRepository.cs" />
+    <Compile Include="Responsitory\ApplicationRoleRepository.cs" />
+    <Compile Include="Responsitory\ApplicationUserGroupRepository.cs" />
+    <Compile Include="Responsitory\ContactDetailRepository.cs" />
+    <Compile Include="Responsitory\ErrorRepository.cs" />
+    <Compile Include="Responsitory\FeedbackRepository.cs" />
     <Compile Include="Responsitory\FooterRepository.cs" />
     <Compile Include="Responsitory\MenuGroupRepository.cs" />
-    <Compile Include="Responsitory\Menurepository.cs" />
+    <Compile Include="Responsitory\MenuRepository.cs" />
     <Compile Include="Responsitory\OrderDetailRepository.cs" />
     <Compile Include="Responsitory\OrderRepository.cs" />
     <Compile Include="Responsitory\PageRepository.cs" />
@@ -78,7 +85,7 @@
     <Compile Include="Responsitory\SupportOnlineRepository.cs" />
     <Compile Include="Responsitory\SystemConfigRepository.cs" />
     <Compile Include="Responsitory\TagRepository.cs" />
-    <Compile Include="Responsitory\VisitorstatusticRepository.cs" />
+    <Compile Include="Responsitory\VisitorStatisticRepository.cs" />
     <Compile Include="TeduShopDbContext.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -86,15 +93,19 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="Migrations\201803111553141_InitalDb.resx">
+      <DependentUpon>201803111553141_InitalDb.cs</DependentUpon>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\TeduShop.Commom\TeduShop.Commom.csproj">
+      <Project>{dc6f9f64-186a-4137-aa7e-3d447ce91474}</Project>
+      <Name>TeduShop.Commom</Name>
+    </ProjectReference>
     <ProjectReference Include="..\TeduShop.Model\TeduShop.Model.csproj">
       <Project>{8801893b-2aa2-4bad-82c3-95f05fe7c1e7}</Project>
       <Name>TeduShop.Model</Name>
     </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
-    <EmbeddedResource Include="Migrations\201803111553141_InitalDb.resx">
-      <DependentUpon>201803111553141_InitalDb.cs</DependentUpon>
-    </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

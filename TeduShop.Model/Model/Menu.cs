@@ -1,28 +1,34 @@
-namespace TeduShop.Model
-{
-    using System;
-    using System.Collections.Generic;
-    using System.ComponentModel.DataAnnotations;
-    using System.ComponentModel.DataAnnotations.Schema;
+﻿using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
+namespace TeduShop.Model.Models
+{
     [Table("Menus")]
-    public partial class Menu
+    public class Menu
     {
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
+        public int ID { set; get; }
 
-        public int ID { get; set; }
         [Required]
-        public string Name { get; set; }
+        [MaxLength(50)]
+        public string Name { set; get; }
+
         [Required]
-        public string URL { get; set; }
+        [MaxLength(256)]
+        public string URL { set; get; }
+
+        public int? DisplayOrder { set; get; }
+
         [Required]
-        public Nullable<int> GroupID { get; set; }
-        public Nullable<int> DIsplayOrder { get; set; }
-        public string Target { get; set; }
-        [Required]
-        public Nullable<bool> Status { get; set; }
+        public int GroupID { set; get; }
+
         [ForeignKey("GroupID")]
-        public virtual MenuGroup MenuGroup { get; set; }
+        public virtual MenuGroup MenuGroup { set; get; }
+
+        [MaxLength(10)]
+        public string Target { set; get; }
+
+        public bool Status { set; get; }
     }
 }
