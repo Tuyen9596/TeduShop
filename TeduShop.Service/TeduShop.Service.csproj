@@ -44,7 +44,6 @@
     <Compile Include="CommonService.cs" />
     <Compile Include="ContactDetailService.cs" />
     <Compile Include="ErrorService.cs" />
-    <Compile Include="FeedbackService.cs" />
     <Compile Include="FunctionService.cs" />
     <Compile Include="OrderService.cs" />
     <Compile Include="PageService.cs" />
@@ -70,6 +69,10 @@
     <ProjectReference Include="..\TeduShop.Model\TeduShop.Model.csproj">
       <Project>{8801893b-2aa2-4bad-82c3-95f05fe7c1e7}</Project>
       <Name>TeduShop.Model</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\TeduShop.UnitTest\TeduShop.UnitTest.csproj">
+      <Project>{bc48c295-66bf-4c95-8362-e88fddaa5c95}</Project>
+      <Name>TeduShop.UnitTest</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
