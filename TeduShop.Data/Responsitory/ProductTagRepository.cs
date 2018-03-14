@@ -9,7 +9,7 @@ using TeduShop.Model.Model;
 
 namespace TeduShop.Data.Responsitory
 {
-    public interface IProductTagRepository
+    public interface IProductTagRepository : IRepository<ProductTag>
     {
 
     }

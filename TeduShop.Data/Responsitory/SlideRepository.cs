@@ -8,7 +8,7 @@ using TeduShop.Model;
 
 namespace TeduShop.Data.Responsitory
 {
-    public interface ISlideRepository
+    public interface ISlideRepository : IRepository<Slide>
     {
 
     }

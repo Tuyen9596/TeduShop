@@ -8,7 +8,7 @@ using TeduShop.Model;
 
 namespace TeduShop.Data.Responsitory
 {
-    public interface IVisitorstatusticRepository
+    public interface IVisitorstatusticRepository : IRepository<VisitorStatistic>
     {
 
     }

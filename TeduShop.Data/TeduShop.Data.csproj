@@ -63,6 +63,7 @@
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Responsitory\FooterRepository.cs" />
+    <Compile Include="Responsitory\ErrorRepository.cs" />
     <Compile Include="Responsitory\MenuGroupRepository.cs" />
     <Compile Include="Responsitory\Menurepository.cs" />
     <Compile Include="Responsitory\OrderDetailRepository.cs" />

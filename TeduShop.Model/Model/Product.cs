@@ -48,11 +48,13 @@ namespace TeduShop.Model
         [Required]
         public bool Status { get; set; }
         public Nullable<bool> HomeFlag { get; set; }
+        public Nullable<bool> HotFlag { get; set; }
         public Nullable<int> ViewCount { get; set; }
-    
+        public int Quantity { get; set; }
         public virtual ICollection<OrderDetail> OrderDetail { get; set; }
         [ForeignKey("CategoryID")]
         public virtual ProductCategorie ProductCategories { get; set; }
+        [ForeignKey("ID")]
         public virtual ICollection<Tag> Tags { get; set; }
     }
 }

@@ -7,7 +7,7 @@ using TeduShop.Data.Infrastructure;
 using TeduShop.Model;
 namespace TeduShop.Data.Responsitory
 {
-    public interface IProductCategoryRepository
+    public interface IProductCategoryRepository : IRepository<ProductCategorie>
     {
 
     }

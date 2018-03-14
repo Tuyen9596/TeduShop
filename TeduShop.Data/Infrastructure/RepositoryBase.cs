@@ -23,7 +23,7 @@ namespace TeduShop.Data.Infrastructure
             get { return dataContext ?? (dataContext = DbFactory.Init()); }
         }
         #endregion
-        protected  RepositoryBase(IDbFactory dbFactory)
+        public  RepositoryBase(IDbFactory dbFactory)
         {
             DbFactory = dbFactory;
             dbSet = DbContext.Set<T>(); 
@@ -35,8 +35,17 @@ namespace TeduShop.Data.Infrastructure
             dataContext.Entry(entity).State = EntityState.Modified;
 
         }
+        public virtual void Add(T entity)
+        {
+            dbSet.Add(entity);
+        }
         public virtual void Delete(T entity)
         {
+            dbSet.Remove(entity);
+        }
+        public virtual void Delete(int id)
+        {
+            var entity = dbSet.Find(id);
             dbSet.Remove(entity);
         }
         public virtual void DeleteMulti(Expression<Func<T,bool>> where)
