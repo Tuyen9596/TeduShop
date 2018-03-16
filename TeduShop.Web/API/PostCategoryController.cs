@@ -1,36 +1,128 @@
 ﻿using System.Collections.Generic;
+using System.Net;
+using System.Net.Http;
 using System.Web.Http;
+using TeduShop.Model;
+using TeduShop.Service;
 using TeduShop.Web.Infrastruture.Core;
 
 namespace TeduShop.Web.API
 {
+    [RoutePrefix("api/postcategory")]
     public class PostCategoryController : ApiControllerBase
     {
-        // GET api/<controller>
-        public IEnumerable<string> Get()
+        IPostCategoryService _postCategoryService;
+        
+        public PostCategoryController(IErrorService errorService,IPostCategoryService postCategoryService)
+            :base(errorService)
         {
-            return new string[] { "value1", "value2" };
+            this._postCategoryService = postCategoryService;
         }
-
-        // GET api/<controller>/5
-        public string Get(int id)
+        public HttpResponseMessage Create(HttpRequestMessage msge,PostCategorie postcategory)
         {
-            return "value";
+            return CreateHttpResponse(msge,()=> {
+                HttpResponseMessage reponse = null;
+                if (ModelState.IsValid)
+                {
+                    msge.CreateErrorResponse(HttpStatusCode.BadRequest, ModelState);
+                } else
+                {
+                   var category= _postCategoryService.Add(postcategory);
+                    _postCategoryService.Save();
+                    reponse = msge.CreateResponse(HttpStatusCode.Created, category);
+                }
+                return reponse;
+            });
         }
-
-        // POST api/<controller>
-        public void Post([FromBody]string value)
+        public HttpResponseMessage Update(HttpRequestMessage msge, PostCategorie postcategory)
         {
+            return CreateHttpResponse(msge, () =>
+            {
+                HttpResponseMessage reponse = null;
+                if (ModelState.IsValid)
+                {
+                    msge.CreateErrorResponse(HttpStatusCode.BadRequest, ModelState);
+                }
+                else
+                {
+                  _postCategoryService.Add(postcategory);
+                    _postCategoryService.Save();
+                    reponse = msge.CreateResponse(HttpStatusCode.OK);
+                }
+                return reponse;
+            });
         }
-
-        // PUT api/<controller>/5
-        public void Put(int id, [FromBody]string value)
+        public HttpResponseMessage Post(HttpRequestMessage msge, PostCategorie postcategory)
         {
+            return CreateHttpResponse(msge, () =>
+            {
+                HttpResponseMessage reponse = null;
+                if (ModelState.IsValid)
+                {
+                    msge.CreateErrorResponse(HttpStatusCode.BadRequest, ModelState);
+                }
+                else
+                {
+                    var category = _postCategoryService.Add(postcategory);
+                    _postCategoryService.Save();
+                    reponse = msge.CreateResponse(HttpStatusCode.Created, category);
+                }
+                return reponse;
+            });
         }
-
-        // DELETE api/<controller>/5
-        public void Delete(int id)
+        public HttpResponseMessage Put(HttpRequestMessage msge, PostCategorie postcategory)
         {
+            return CreateHttpResponse(msge, () =>
+            {
+                HttpResponseMessage reponse = null;
+                if (ModelState.IsValid)
+                {
+                    msge.CreateErrorResponse(HttpStatusCode.BadRequest, ModelState);
+                }
+                else
+                {
+                    var category = _postCategoryService.Add(postcategory);
+                    _postCategoryService.Save();
+                    reponse = msge.CreateResponse(HttpStatusCode.Created, category);
+                }
+                return reponse;
+            });
+        }
+        [Route("getall")]
+        public HttpResponseMessage Get(HttpRequestMessage msge)
+        {
+            return CreateHttpResponse(msge, () =>
+            {
+                HttpResponseMessage reponse = null;
+                if (ModelState.IsValid)
+                {
+                    msge.CreateErrorResponse(HttpStatusCode.BadRequest, ModelState);
+                }
+                else
+                {
+                    var listCategory=_postCategoryService.GetAll();
+                    reponse = msge.CreateResponse(HttpStatusCode.OK, listCategory);
+                }
+                return reponse;
+            });
+        }
+        public HttpResponseMessage Delete(HttpRequestMessage msge, int id)
+        {
+            return CreateHttpResponse(msge, () =>
+            {
+                HttpResponseMessage reponse = null;
+                if (ModelState.IsValid)
+                {
+                    msge.CreateErrorResponse(HttpStatusCode.BadRequest, ModelState);
+                }
+                else
+                {
+                    _postCategoryService.Delete(id);
+                    _postCategoryService.Save();
+                    reponse = msge.CreateResponse(HttpStatusCode.OK);
+                }
+                return reponse;
+            });
         }
     }
 }

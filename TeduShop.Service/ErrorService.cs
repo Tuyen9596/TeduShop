@@ -24,7 +24,7 @@ namespace TeduShop.Service
 
         public void Create(Error error)
         {
-            //_errorRepository.Add(error);
+            _errorRepository.Add(error);
         }
 
         public void Save()

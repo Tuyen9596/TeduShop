@@ -10,13 +10,13 @@ namespace TeduShop.Service
 {
     public interface IPostCategoryService : IRepository<PostCategorie>
     {
-        void Add(PostCategorie postCategory);
+        PostCategorie Add(PostCategorie postCategory);
 
         void Update(PostCategorie postCategory);
 
-        void Delete(PostCategorie postCategory);
+        PostCategorie Delete(PostCategorie postCategory);
 
-        void Delete(int id);
+        PostCategorie Delete(int id);
 
         IEnumerable<PostCategorie> GetAll();
 
@@ -29,18 +29,18 @@ namespace TeduShop.Service
 
     public class PostCategoryService : IPostCategoryService
     {
-        private IPostCategoryRepository _postCategoryRepository;
+        private PostCategoryRepository _postCategoryRepository;
         private IUnitOfWork _unitOfWork;
 
-        public PostCategoryService(IPostCategoryRepository postCategoryRepository, IUnitOfWork unitOfWork)
+        public PostCategoryService(PostCategoryRepository postCategoryRepository, IUnitOfWork unitOfWork)
         {
             this._postCategoryRepository = postCategoryRepository;
             this._unitOfWork = unitOfWork;
         }
 
-        public void Add(PostCategorie postCategory)
+        public PostCategorie Add(PostCategorie postCategory)
         {
-            _postCategoryRepository.Add(postCategory);
+          return  _postCategoryRepository.Add(postCategory);
         }
 
         public bool CheckContains(Expression<Func<PostCategorie, bool>> predicate)
@@ -53,14 +53,14 @@ namespace TeduShop.Service
             throw new NotImplementedException();
         }
 
-        public void Delete(PostCategorie postCategory)
+        public PostCategorie Delete(PostCategorie postCategory)
         {
-            _postCategoryRepository.Delete(postCategory);
+           return _postCategoryRepository.Delete(postCategory);
         }
 
-        public void Delete(int id)
+        public PostCategorie Delete(int id)
         {
-            _postCategoryRepository.Delete(id);
+          return  _postCategoryRepository.Delete(id);
         }
 
         public void DeleteMulti(Expression<Func<PostCategorie, bool>> where)
