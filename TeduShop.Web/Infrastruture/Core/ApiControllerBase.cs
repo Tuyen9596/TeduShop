@@ -12,14 +12,14 @@ namespace TeduShop.Web.Infrastruture.Core
 {
     public class ApiControllerBase : ApiController
     {
-        private IErrorService _errorService;
+        public IErrorService _errorService;
 
         public ApiControllerBase(IErrorService errorService)
         {
             this._errorService = errorService;
         }
 
-        protected HttpResponseMessage CreateHttpResponse(HttpRequestMessage requestMessage, Func<HttpResponseMessage> function)
+        public HttpResponseMessage CreateHttpResponse(HttpRequestMessage requestMessage, Func<HttpResponseMessage> function)
         {
             HttpResponseMessage reponse = null;
             try
@@ -52,7 +52,7 @@ namespace TeduShop.Web.Infrastruture.Core
             return reponse;
         }
 
-        private void LogError(Exception ex)
+        public void LogError(Exception ex)
         {
             try
             {
