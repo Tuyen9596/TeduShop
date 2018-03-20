@@ -1,12 +1,12 @@
 ﻿using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
-using TeduShop.Model.Models;
+using TeduShop.Model.Abstract;
 
 namespace TeduShop.Model.Model
 {
     [Table("Posts")]
-    public class Post 
+    public class Post : Auditable
     {
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]

@@ -1,5 +1,6 @@
 ﻿using System;
 using TeduShop.Model;
+using TeduShop.Model.Model;
 using TeduShop.Web.Models;
 
 namespace TeduShop.Web.Infrastructure.Extensions
@@ -9,18 +10,18 @@ namespace TeduShop.Web.Infrastructure.Extensions
         public static void UpdatePostCategory(this PostCategory postCategory, PostCategoryViewModel postCategoryVm)
         {
             postCategory.ID = postCategoryVm.ID;
-            postCategory.PostName = postCategoryVm.Name;
+            postCategory.Name = postCategoryVm.Name;
             postCategory.Description = postCategoryVm.Description;
-            postCategory.Alas = postCategoryVm.Alias;
+            postCategory.Alias = postCategoryVm.Alias;
             postCategory.ParentID = postCategoryVm.ParentID;
-            postCategory.DisplayOder = postCategoryVm.DisplayOrder;
+            postCategory.DisplayOrder = postCategoryVm.DisplayOrder;
             postCategory.Image = postCategoryVm.Image;
             postCategory.HomeFlag = postCategoryVm.HomeFlag;
 
-            postCategory.CreateDate = postCategoryVm.CreatedDate;
-            postCategory.CreateBy = postCategoryVm.CreatedBy;
-            postCategory.UpdateDate = postCategoryVm.UpdatedDate;
-            postCategory.UpdateBy = postCategoryVm.UpdatedBy;
+            postCategory.CreatedDate = postCategoryVm.CreatedDate;
+            postCategory.CreatedBy = postCategoryVm.CreatedBy;
+            postCategory.UpdatedDate = postCategoryVm.UpdatedDate;
+            postCategory.UpdatedBy = postCategoryVm.UpdatedBy;
             postCategory.MetaKeyword = postCategoryVm.MetaKeyword;
             postCategory.MetaDescription = postCategoryVm.MetaDescription;
             postCategory.Status = postCategoryVm.Status;
@@ -31,16 +32,16 @@ namespace TeduShop.Web.Infrastructure.Extensions
             productCategory.ID = productCategoryVm.ID;
             productCategory.Name = productCategoryVm.Name;
             productCategory.Description = productCategoryVm.Description;
-            productCategory.Alas = productCategoryVm.Alias;
+            productCategory.Alias = productCategoryVm.Alias;
             productCategory.ParentID = productCategoryVm.ParentID;
-            productCategory.DisplayOder = productCategoryVm.DisplayOrder;
+            productCategory.DisplayOrder = productCategoryVm.DisplayOrder;
             productCategory.Image = productCategoryVm.Image;
             productCategory.HomeFlag = productCategoryVm.HomeFlag;
 
-            productCategory.CreateDate = productCategoryVm.CreatedDate;
-            productCategory.CreateBy = productCategoryVm.CreatedBy;
-            productCategory.UpdateDate = productCategoryVm.UpdatedDate;
-            productCategory.UpdateBy = productCategoryVm.UpdatedBy;
+            productCategory.CreatedDate = productCategoryVm.CreatedDate;
+            productCategory.CreatedBy = productCategoryVm.CreatedBy;
+            productCategory.UpdatedDate = productCategoryVm.UpdatedDate;
+            productCategory.UpdatedBy = productCategoryVm.UpdatedBy;
             productCategory.MetaKeyword = productCategoryVm.MetaKeyword;
             productCategory.MetaDescription = productCategoryVm.MetaDescription;
             productCategory.Status = productCategoryVm.Status;
@@ -51,17 +52,17 @@ namespace TeduShop.Web.Infrastructure.Extensions
             post.ID = postVm.ID;
             post.Name = postVm.Name;
             post.Description = postVm.Description;
-            post.Alas = postVm.Alias;
+            post.Alias = postVm.Alias;
             post.CategoryID = postVm.CategoryID;
             post.Content = postVm.Content;
             post.Image = postVm.Image;
             post.HomeFlag = postVm.HomeFlag;
             post.ViewCount = postVm.ViewCount;
 
-            post.CreateDate = postVm.CreatedDate;
-            post.CreateBy = postVm.CreatedBy;
-            post.UpdateDate = postVm.UpdatedDate;
-            post.UpdateBy = postVm.UpdatedBy;
+            post.CreatedDate = postVm.CreatedDate;
+            post.CreatedBy = postVm.CreatedBy;
+            post.UpdatedDate = postVm.UpdatedDate;
+            post.UpdatedBy = postVm.UpdatedBy;
             post.MetaKeyword = postVm.MetaKeyword;
             post.MetaDescription = postVm.MetaDescription;
             post.Status = postVm.Status;
@@ -72,11 +73,11 @@ namespace TeduShop.Web.Infrastructure.Extensions
             product.ID = productVm.ID;
             product.Name = productVm.Name;
             product.Description = productVm.Description;
-            product.Alas = productVm.Alias;
+            product.Alias = productVm.Alias;
             product.CategoryID = productVm.CategoryID;
             product.Content = productVm.Content;
             product.Image = productVm.Image;
-            product.MoreImage = productVm.MoreImages;
+            product.MoreImages = productVm.MoreImages;
             product.Price = productVm.Price;
             product.PromotionPrice = productVm.PromotionPrice;
             product.Warranty = productVm.Warranty;
@@ -84,16 +85,16 @@ namespace TeduShop.Web.Infrastructure.Extensions
             product.HotFlag = productVm.HotFlag;
             product.ViewCount = productVm.ViewCount;
 
-            product.CreateDate = productVm.CreatedDate;
-            product.CreateBy = productVm.CreatedBy;
-            product.UpdateDate = productVm.UpdatedDate;
-            product.UpdateBy = productVm.UpdatedBy;
+            product.CreatedDate = productVm.CreatedDate;
+            product.CreatedBy = productVm.CreatedBy;
+            product.UpdatedDate = productVm.UpdatedDate;
+            product.UpdatedBy = productVm.UpdatedBy;
             product.MetaKeyword = productVm.MetaKeyword;
             product.MetaDescription = productVm.MetaDescription;
             product.Status = productVm.Status;
             product.Tags = productVm.Tags;
             product.Quantity = productVm.Quantity;
-            //product.OriginalPrice = productVm.OriginalPrice;
+            product.OriginalPrice = productVm.OriginalPrice;
         }
 
         //public static void UpdateFeedback(this Feedback feedback, FeedbackViewModel feedbackVm)
@@ -107,14 +108,14 @@ namespace TeduShop.Web.Infrastructure.Extensions
 
         public static void UpdateOrder(this Order order, OrderViewModel orderVm)
         {
-            order.Name = orderVm.CustomerName;
-            order.Address = orderVm.CustomerName;
-            order.Email = orderVm.CustomerName;
-            order.Phone = orderVm.CustomerMobile;
-            order.Message = orderVm.CustomerName;
-            order.PayMentMeThod = orderVm.PaymentMethod;
-            order.CreateDate = DateTime.Now;
-            order.CreateBy = orderVm.CreatedBy;
+            order.CustomerName = orderVm.CustomerName;
+            order.CustomerAddress = orderVm.CustomerName;
+            order.CustomerEmail = orderVm.CustomerName;
+            order.CustomerMobile = orderVm.CustomerMobile;
+            order.CustomerMessage = orderVm.CustomerMessage;
+            order.PaymentMethod = orderVm.PaymentMethod;
+            order.CreatedDate = DateTime.Now;
+            order.CreatedBy = orderVm.CreatedBy;
             order.Status = orderVm.Status;
             order.ID = orderVm.CustomerId;
         }

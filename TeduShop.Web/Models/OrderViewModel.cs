@@ -39,7 +39,7 @@ namespace TeduShop.Web.Models
         public bool Status { set; get; }
 
         [MaxLength(128)]
-        public string CustomerId { set; get; }
+        public int CustomerId { set; get; }
 
         public string BankCode { set; get; }
 

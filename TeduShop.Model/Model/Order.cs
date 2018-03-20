@@ -42,10 +42,10 @@ namespace TeduShop.Model.Model
 
         [StringLength(128)]
         [Column(TypeName = "nvarchar")]
-        public string CustomerId { set; get; }
+        public int CustomerId { set; get; }
 
         [ForeignKey("CustomerId")]
-        public virtual ApplicationUser User { set; get; }
+      //  public virtual ApplicationUser User { set; get; }
 
         public virtual IEnumerable<OrderDetail> OrderDetails { set; get; }
     }
