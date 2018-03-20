@@ -7,11 +7,11 @@ using TeduShop.Data.Infrastructure;
 using TeduShop.Model;
 namespace TeduShop.Data.Responsitory
 {
-    public interface IProductCategoryRepository : IRepository<ProductCategorie>
+    public interface IProductCategoryRepository : IRepository<ProductCategory>
     {
 
     }
-    public class ProductCategoryRepository : RepositoryBase<ProductCategorie>,IProductCategoryRepository
+    public class ProductCategoryRepository : RepositoryBase<ProductCategory>,IProductCategoryRepository
     {
         public ProductCategoryRepository(IDbFactory dbFactory):base(dbFactory){
 

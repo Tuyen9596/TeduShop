@@ -14,29 +14,33 @@ namespace TeduShop.Model
     using System.ComponentModel.DataAnnotations;
     using System.ComponentModel.DataAnnotations.Schema;
 
-    [Table("ProductCategories")]
-    public partial class ProductCategorie
+    [Table("PostCategories")]
+    public partial class PostCategory
     {
-    [Key]
-    [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
+        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
+        [Key]
         public int ID { get; set; }
         [Required]
-        public string Name { get; set; }
+        public string PostName { get; set; }
         [Required]
         public string Alas { get; set; }
-        public Nullable<int> ParentID { get; set; }
+        [Required]
+        public int? ParentID { get; set; }
         public string Image { get; set; }
         public string Description { get; set; }
-        public Nullable<int> DisplayOder { get; set; }
+        [Required]
+        public int? DisplayOder { get; set; }
         public string MetaKeyword { get; set; }
         public string MetaDescription { get; set; }
         public Nullable<System.DateTime> CreateDate { get; set; }
         public string CreateBy { get; set; }
         public Nullable<System.DateTime> UpdateDate { get; set; }
         public string UpdateBy { get; set; }
+        [Required]
         public bool Status { get; set; }
+        [Required]
         public bool? HomeFlag { get; set; }
-        [ForeignKey("ID")]
-        public virtual ICollection<Product> Products { get; set; }
+        [ForeignKey("ParentID")]
+        public virtual IEnumerable<Post> Posts { set; get; }
     }
 }

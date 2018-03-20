@@ -36,7 +36,7 @@ namespace TeduShop.Model
         public string MetaDescription { get; set; }
         public string Content { get; set; }
         [Required]
-        public DateTime CreateDate { get; set; }
+        public DateTime? CreateDate { get; set; }
         public string CreateBy { get; set; }
         public Nullable<System.DateTime> UpdateDate { get; set; }
         public string UpdateBy { get; set; }
@@ -44,7 +44,7 @@ namespace TeduShop.Model
         public Nullable<bool> HomeFlag { get; set; }
         public Nullable<int> ViewCount { get; set; }
         [ForeignKey("CategoryID")]
-        public virtual PostCategorie PostCategories { get; set; }
+        public virtual PostCategory PostCategories { get; set; }
         [ForeignKey("ID")]
         public virtual ICollection<Tag> Tags { get; set; }
     }

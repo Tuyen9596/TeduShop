@@ -18,9 +18,9 @@ namespace TeduShop.UnitTest.ResponseTest
        [TestInitialize]
         public void Initialize()
         {
-            //dbFactory = new DbFactory();
-            //objRepository - new PostCategoryRepository(dbFactory);
-            //unitOfWork = new IUnitOfWork(dbFactory);
+            dbFactory = new DbFactory();
+            objRepository = new PostCategoryRepository(dbFactory);
+            unitOfWork = new UnitOfWork(dbFactory);
 
         }
     }

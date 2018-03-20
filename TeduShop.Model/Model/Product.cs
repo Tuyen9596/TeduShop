@@ -30,11 +30,13 @@ namespace TeduShop.Model
         public string Image { get; set; }
         [Column(TypeName ="Xml")]
         public string MoreImage { get; set; }
-        public int Price { get; set; }
+        public decimal Price { get; set; }
         public Nullable<decimal> PromotionPrice { get; set; }
         public Nullable<int> Waranty { get; set; }
         [Required]
         public string Description { get; set; }
+        public int? Warranty { set; get; }
+
         [Required]
         public string MetaKeyword { get; set; }
         [Required]
@@ -53,8 +55,7 @@ namespace TeduShop.Model
         public int Quantity { get; set; }
         public virtual ICollection<OrderDetail> OrderDetail { get; set; }
         [ForeignKey("CategoryID")]
-        public virtual ProductCategorie ProductCategories { get; set; }
-        [ForeignKey("ID")]
-        public virtual ICollection<Tag> Tags { get; set; }
+        public virtual ProductCategory ProductCategories { get; set; }
+        public virtual string Tags { get; set; }
     }
 }

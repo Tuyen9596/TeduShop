@@ -14,7 +14,7 @@ namespace TeduShop.Data.Infrastructure
         {
             return dbContext ?? (dbContext = new TeduShopDbContext());
         }
-        protected  void DisposeCore()
+        protected  override void DisposeCore()
         {
             if (dbContext != null) dbContext.Dispose();
         }

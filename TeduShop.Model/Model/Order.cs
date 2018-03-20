@@ -19,7 +19,7 @@ namespace TeduShop.Model
     {
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         [Key]
-        public int ID { get; set; }
+        public string ID { get; set; }
         [Required]
         public string Name { get; set; }
         [Required]
@@ -27,7 +27,7 @@ namespace TeduShop.Model
         [Required]
         public string Email { get; set; }
         [Required]
-        public byte[] Phone { get; set; }
+        public string Phone { get; set; }
         [Required]
         public string Message { get; set; }
         [Required]

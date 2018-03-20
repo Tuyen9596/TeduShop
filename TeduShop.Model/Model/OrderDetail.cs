@@ -19,7 +19,7 @@ namespace TeduShop.Model
     {
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         [Key]
-        public int OrderID { get; set; }
+        public string OrderID { get; set; }
         public int ProductID { get; set; }
         public Nullable<int> Quatity { get; set; }
         [ForeignKey("OrderID")]

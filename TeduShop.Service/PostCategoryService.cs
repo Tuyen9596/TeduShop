@@ -8,119 +8,75 @@ using TeduShop.Model;
 
 namespace TeduShop.Service
 {
-    public interface IPostCategoryService : IRepository<PostCategorie>
+    public interface IPostCategoryService 
     {
-        PostCategorie Add(PostCategorie postCategory);
+        PostCategory Add(PostCategory postCategory);
 
-        void Update(PostCategorie postCategory);
+        void Update(PostCategory postCategory);
 
-        PostCategorie Delete(PostCategorie postCategory);
+        PostCategory Delete(PostCategory postCategory);
 
-        PostCategorie Delete(int id);
+        PostCategory Delete(int id);
 
-        IEnumerable<PostCategorie> GetAll();
+        IEnumerable<PostCategory> GetAll();
+        PostCategory GetById(int id);
+        IEnumerable<PostCategory> GetAllByParentId(int parentId);
 
-        IEnumerable<PostCategorie> GetAllByParentId(int parentId);
-
-        void GetById(int id);
 
         void Save();
     }
 
     public class PostCategoryService : IPostCategoryService
     {
-        private PostCategoryRepository _postCategoryRepository;
+        private IPostCategoryRepository _postCategoryRepository;
         private IUnitOfWork _unitOfWork;
 
-        public PostCategoryService(PostCategoryRepository postCategoryRepository, IUnitOfWork unitOfWork)
+        public PostCategoryService(IPostCategoryRepository postCategoryRepository, IUnitOfWork unitOfWork)
         {
             this._postCategoryRepository = postCategoryRepository;
             this._unitOfWork = unitOfWork;
         }
 
-        public PostCategorie Add(PostCategorie postCategory)
+        public PostCategory Add(PostCategory postCategory)
         {
-          return  _postCategoryRepository.Add(postCategory);
+            return _postCategoryRepository.Add(postCategory);
         }
 
-        public bool CheckContains(Expression<Func<PostCategorie, bool>> predicate)
+        public PostCategory Delete(PostCategory postCategory)
         {
-            throw new NotImplementedException();
+            return _postCategoryRepository.Delete(postCategory);
         }
 
-        public int Count(Expression<Func<PostCategorie, bool>> where)
+        public PostCategory Delete(int id)
         {
-            throw new NotImplementedException();
+            return _postCategoryRepository.Delete(id);
         }
 
-        public PostCategorie Delete(PostCategorie postCategory)
-        {
-           return _postCategoryRepository.Delete(postCategory);
-        }
-
-        public PostCategorie Delete(int id)
-        {
-          return  _postCategoryRepository.Delete(id);
-        }
-
-        public void DeleteMulti(Expression<Func<PostCategorie, bool>> where)
-        {
-            throw new NotImplementedException();
-        }
-
-        public IEnumerable<PostCategorie> GetAll()
+        public IEnumerable<PostCategory> GetAll()
         {
             return _postCategoryRepository.GetAll();
         }
 
-        public IQueryable<PostCategorie> GetAll(string[] includes = null)
+        public IEnumerable<PostCategory> GetAllByParentId(int parentId)
         {
-            throw new NotImplementedException();
+            return _postCategoryRepository.GetMulti(x => x.Status && x.ParentID == parentId);
         }
 
-        public IEnumerable<PostCategorie> GetAllByParentId(int parentId)
-        {
-            return _postCategoryRepository.GetMulti(x => x.Status == true && x.ParentID == parentId);
-        }
 
-        public PostCategorie GetById(int id)
+        public PostCategory GetById(int id)
         {
             return _postCategoryRepository.GetSingleById(id);
         }
 
-        public IQueryable<PostCategorie> GetMulti(Expression<Func<PostCategorie, bool>> predicate, string[] includes = null)
-        {
-            throw new NotImplementedException();
-        }
-
-        public IQueryable<PostCategorie> GetMultiPaging(Expression<Func<PostCategorie, bool>> filter, out int total, int index = 0, int size = 50, string[] includes = null)
-        {
-            throw new NotImplementedException();
-        }
-
-        public PostCategorie GetSingleByCondition(Expression<Func<PostCategorie, bool>> expression, string[] includes = null)
-        {
-            throw new NotImplementedException();
-        }
-
-        public PostCategorie GetSingleById(int id)
-        {
-            throw new NotImplementedException();
-        }
-
         public void Save()
         {
-            throw new NotImplementedException();
+            _unitOfWork.Commit();
         }
 
-        public void Update(PostCategorie postCategory)
+        public void Update(PostCategory postCategory)
         {
             _postCategoryRepository.Update(postCategory);
         }
 
-        void IPostCategoryService.GetById(int id)
-        {
-            throw new NotImplementedException();
-        }
     }
 }
