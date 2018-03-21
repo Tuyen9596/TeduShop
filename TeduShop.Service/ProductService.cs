@@ -152,12 +152,12 @@ namespace TeduShop.Service
 
         public IEnumerable<Product> GetLastest(int top)
         {
-            return _productRepository.GetMulti(x => x.Status).OrderByDescending(x => x.CreateDate).Take(top);
+            return _productRepository.GetMulti(x => x.Status).OrderByDescending(x => x.CreatedDate).Take(top);
         }
 
         public IEnumerable<Product> GetHotProduct(int top)
         {
-            return _productRepository.GetMulti(x => x.Status && x.HotFlag == true).OrderByDescending(x => x.CreateDate).Take(top);
+            return _productRepository.GetMulti(x => x.Status && x.HotFlag == true).OrderByDescending(x => x.CreatedDate).Take(top);
         }
 
         public IEnumerable<Product> GetListProductByCategoryIdPaging(int categoryId, int page, int pageSize, string sort, out int totalRow)
@@ -179,7 +179,7 @@ namespace TeduShop.Service
                     break;
 
                 default:
-                    query = query.OrderByDescending(x => x.CreateDate);
+                    query = query.OrderByDescending(x => x.CreatedDate);
                     break;
             }
 
@@ -212,7 +212,7 @@ namespace TeduShop.Service
                     break;
 
                 default:
-                    query = query.OrderByDescending(x => x.CreateDate);
+                    query = query.OrderByDescending(x => x.CreatedDate);
                     break;
             }
 
@@ -224,7 +224,7 @@ namespace TeduShop.Service
         public IEnumerable<Product> GetReatedProducts(int id, int top)
         {
             var product = _productRepository.GetSingleById(id);
-            return _productRepository.GetMulti(x => x.Status && x.ID != id && x.CategoryID == product.CategoryID).OrderByDescending(x => x.CreateDate).Take(top);
+            return _productRepository.GetMulti(x => x.Status && x.ID != id && x.CategoryID == product.CategoryID).OrderByDescending(x => x.CreatedDate).Take(top);
         }
 
         public IEnumerable<Tag> GetListTagByProductId(int id)

@@ -2,6 +2,7 @@
 using TeduShop.Data.Infrastructure;
 using TeduShop.Data.Responsitory;
 using TeduShop.Model;
+using TeduShop.Model.Model;
 
 namespace TeduShop.Service
 {

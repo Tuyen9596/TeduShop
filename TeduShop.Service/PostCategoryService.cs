@@ -1,14 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Linq.Expressions;
+﻿using System.Collections.Generic;
 using TeduShop.Data.Infrastructure;
 using TeduShop.Data.Responsitory;
-using TeduShop.Model;
+using TeduShop.Model.Model;
 
 namespace TeduShop.Service
 {
-    public interface IPostCategoryService 
+    public interface IPostCategoryService
     {
         PostCategory Add(PostCategory postCategory);
 
@@ -19,9 +16,10 @@ namespace TeduShop.Service
         PostCategory Delete(int id);
 
         IEnumerable<PostCategory> GetAll();
-        PostCategory GetById(int id);
-        IEnumerable<PostCategory> GetAllByParentId(int parentId);
 
+        PostCategory GetById(int id);
+
+        IEnumerable<PostCategory> GetAllByParentId(int parentId);
 
         void Save();
     }
@@ -62,7 +60,6 @@ namespace TeduShop.Service
             return _postCategoryRepository.GetMulti(x => x.Status && x.ParentID == parentId);
         }
 
-
         public PostCategory GetById(int id)
         {
             return _postCategoryRepository.GetSingleById(id);
@@ -77,6 +74,5 @@ namespace TeduShop.Service
         {
             _postCategoryRepository.Update(postCategory);
         }
-
     }
 }

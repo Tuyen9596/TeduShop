@@ -6,6 +6,7 @@ using System.Net;
 using System.Net.Http;
 using System.Web.Http;
 using TeduShop.Model;
+using TeduShop.Model.Model;
 using TeduShop.Service;
 
 namespace TeduShop.Web.Infrastruture.Core
@@ -57,7 +58,7 @@ namespace TeduShop.Web.Infrastruture.Core
             try
             {
                 Error er = new Error();
-                er.CreateDate = DateTime.Now;
+                er.CreatedDate = DateTime.Now;
                 er.Message = ex.Message;
                 er.StackTrace = ex.StackTrace;
                 _errorService.Create(er);

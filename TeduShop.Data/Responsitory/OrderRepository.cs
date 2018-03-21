@@ -1,22 +1,16 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using TeduShop.Data.Infrastructure;
-using TeduShop.Model;
+﻿using TeduShop.Data.Infrastructure;
+using TeduShop.Model.Model;
 
 namespace TeduShop.Data.Responsitory
 {
     public interface IOrderRepository : IRepository<Order>
     {
-
     }
-    class OrderRepository : RepositoryBase<Order>, IOrderRepository
+
+    internal class OrderRepository : RepositoryBase<Order>, IOrderRepository
     {
         public OrderRepository(IDbFactory dbFactory) : base(dbFactory)
         {
-
         }
     }
 }

@@ -1,10 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using TeduShop.Data.Infrastructure;
-using TeduShop.Model;
+using TeduShop.Model.Model;
 
 namespace TeduShop.Data.Responsitory
 {
@@ -13,12 +10,10 @@ namespace TeduShop.Data.Responsitory
         IEnumerable<Product> GetListProductByTag(string tagId, int page, int pageSize, out int totalRow);
     }
 
-    public class ProductRepository:RepositoryBase<Model.Product>,IProductRepository
+    public class ProductRepository : RepositoryBase<Product>, IProductRepository
     {
-
-        public ProductRepository(IDbFactory dbFactory):base(dbFactory)
+        public ProductRepository(IDbFactory dbFactory) : base(dbFactory)
         {
-
         }
 
         public IEnumerable<Product> GetListProductByTag(string tagId, int page, int pageSize, out int totalRow)
@@ -30,7 +25,7 @@ namespace TeduShop.Data.Responsitory
                         select p;
             totalRow = query.Count();
 
-            return query.OrderByDescending(x => x.CreateDate).Skip((page - 1) * pageSize).Take(pageSize);
+            return query.OrderByDescending(x => x.CreatedDate).Skip((page - 1) * pageSize).Take(pageSize);
         }
     }
 }

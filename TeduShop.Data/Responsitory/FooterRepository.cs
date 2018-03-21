@@ -1,23 +1,16 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using TeduShop.Data.Infrastructure;
-using TeduShop.Model;
+﻿using TeduShop.Data.Infrastructure;
+using TeduShop.Model.Model;
 
 namespace TeduShop.Data.Responsitory
 {
-    public interface IFooterRepository:IRepository<Footer>
+    public interface IFooterRepository : IRepository<Footer>
     {
-
     }
-    class FooterRepository : RepositoryBase<Footer>, IFooterRepository
+
+    internal class FooterRepository : RepositoryBase<Footer>, IFooterRepository
     {
         public FooterRepository(IDbFactory dbFactory) : base(dbFactory)
         {
-
         }
     }
-
 }

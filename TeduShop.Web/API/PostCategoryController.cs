@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Net;
 using System.Net.Http;
 using System.Web.Http;
-using TeduShop.Model;
+using TeduShop.Model.Model;
 using TeduShop.Service;
 using TeduShop.Web.Infrastructure.Extensions;
 using TeduShop.Web.Infrastruture.Core;
