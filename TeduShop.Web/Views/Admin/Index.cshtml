@@ -1,7 +1,21 @@
 ﻿
 @{
-    ViewBag.Title = "Index";
+   Layout=null;
 }
-<script src="~/Scripts/plugins/angular/angular.js"></script>
-<h2 ng-app>10 +20 ={{10+20}}</h2>
+<!DOCTYPE html>
+<html  ng-app="myModule">
+<head>
+    <script src="~/Scripts/plugins/angular/angular.js"></script>
+    <script src="~/Scripts/spa/app.js"></script>
+</head>
+<body >
+    <div ng-controller="rootController">
+        <input ng-model="num"/>Value of text is {{num}}
+        <button ng-click="checkNumber()">Check number</button>
+        {{return}}
+
+    </div>
+    <tedu-Shop-Directive></tedu-Shop-Directive>
+</body>
+</html>
 
